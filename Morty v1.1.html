@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Non-QM Scenario Desk — East Coast Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f5f5f3;
+    --bg3: #eeede9;
+    --text: #1a1a18;
+    --text2: #5f5e5a;
+    --text3: #888780;
+    --border: rgba(0,0,0,0.12);
+    --border2: rgba(0,0,0,0.22);
+    --accent-lo: #BA7517;
+    --accent-partner: #0F6E56;
+    --info-bg: #E6F1FB; --info-fg: #0C447C; --info-bar: #185FA5;
+    --success-bg: #EAF3DE; --success-fg: #27500A; --success-bar: #3B6D11;
+    --warn-bg: #FAEEDA; --warn-fg: #633806; --warn-bar: #BA7517;
+    --danger-bg: #FCEBEB; --danger-fg: #791F1F; --danger-bar: #A32D2D;
+    --gray-bg: #F1EFE8; --gray-fg: #444441; --gray-bar: #5F5E5A;
+    --radius: 8px; --radius-lg: 12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
+      --text: #f0efe9; --text2: #a8a79f; --text3: #6b6a64;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.18);
+      --info-bg: #042C53; --info-fg: #B5D4F4; --info-bar: #378ADD;
+      --success-bg: #173404; --success-fg: #C0DD97; --success-bar: #639922;
+      --warn-bg: #412402; --warn-fg: #FAC775; --warn-bar: #EF9F27;
+      --danger-bg: #501313; --danger-fg: #F7C1C1; --danger-bar: #E24B4A;
+      --gray-bg: #2C2C2A; --gray-fg: #D3D1C7; --gray-bar: #888780;
+    }
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg3);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  #app {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--bg);
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    padding: 2rem 2rem 2.5rem;
+  }
+
+  select, input[type="text"], input[type="number"], input[type="password"], textarea {
+    width: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    padding: 7px 10px;
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+  select:focus, input:focus, textarea:focus { border-color: var(--text3); }
+  textarea { resize: vertical; line-height: 1.5; }
+
+  button {
+    font-family: 'IBM Plex Sans', sans-serif;
+    cursor: pointer;
+  }
+
+  ul.res-list { margin: 4px 0 6px; padding-left: 1.25rem; }
+  ul.res-list li { margin-bottom: 3px; font-size: 13.5px; line-height: 1.65; color: var(--text); }
+  p.res-p { margin: 3px 0; font-size: 13.5px; line-height: 1.65; color: var(--text); }
+  strong.res-b { font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const KB = `
+EAST COAST CAPITAL — NON-QM LENDER KNOWLEDGE BASE
+(PLACEHOLDER — Jesse will replace with actual approved lender guidelines)
+
+=== VERUS MORTGAGE CAPITAL ===
+Products: Bank Statement (12/24mo), DSCR, Foreign National, Asset Depletion
+Bank Statement: Min FICO 660 | Max LTV 85% purch/80% R&T/75% cash-out | $150K-$3.5M | 12 or 24mo personal or business | Business: 50% expense factor default, CPA letter can override | Max DTI 50% | 2yr self-employment required
+DSCR: Min FICO 640 | Max LTV 80% purch/75% R&T/70% cash-out | Min DSCR 1.0 (below-1.0: 680+ FICO, 65% LTV max) | No-ratio: 660+ FICO, 70% LTV max | Short-term rental: AirDNA or lease ok | SFR, 2-4 unit, non-warrantable condo eligible
+Foreign National: No US FICO | Max LTV 65% | 12mo PITIA reserves | Purchase and R&T only
+Asset Depletion: Eligible assets / 84mo = qualifying income | Min FICO 680 | Max LTV 75%
+
+=== ANGEL OAK MORTGAGE SOLUTIONS ===
+Products: Bank Statement, 1099, P&L Only, Non-QM Prime
+Bank Statement: Min FICO 600 | Max LTV 90% purch (720+ FICO)/85% R&T/80% cash-out | $100K-$3M | 12 or 24mo personal or business | Asset qualifier overlay available
+1099 Only: 1 or 2 years | Min FICO 660 | Max LTV 85% purch/80% refi | Gig workers, independent contractors, commissioned sales
+P&L Only: CPA-prepared 12 or 24mo | Min FICO 660 | Max LTV 80% purch/75% refi | No bank statements required
+Non-QM Prime (credit events): BK7 discharged 2yr | Foreclosure 3yr | Short sale/DIL 3yr
+
+=== DEEPHAVEN MORTGAGE ===
+Products: DSCR, Bank Statement, Non-Prime
+DSCR: Min FICO 620 | Max LTV 80% purch/75% R&T/70% cash-out | Min DSCR 1.0 | No-ratio 660+ FICO | SFR, 2-4 unit, warrantable/non-warrantable condo
+Non-Prime: Min FICO 500 | FICO tiers: 500-519→65% LTV | 520-559→70% | 560-619→75% | 620+→80% | BK7 1 day out allowed | Foreclosure 1 day at 65% LTV, 620+ FICO preferred
+Bank Statement Non-Prime: Min FICO 580 | Max LTV 75% | 12 or 24mo
+
+=== A&D MORTGAGE ===
+Products: Bank Statement, DSCR, Fix & Flip/Bridge, 1099
+Bank Statement: Min FICO 620 | Max LTV 85% purch/80% R&T/75% cash-out | Competitive for recent self-employed with strong deposits
+DSCR: Min FICO 600 | Max LTV 80% | Strong on 5+ unit residential DSCR
+Fix & Flip/Bridge: 90% purch + 100% rehab, max 75% ARV | Min FICO 620 | $75K-$5M | IO during rehab
+1099: 1 or 2 years | Min FICO 640 | Max LTV 80%
+
+=== ACRA LENDING ===
+Products: Asset Depletion, Asset Dissipation, Bank Statement, Foreign National
+Asset Depletion: Assets / 84mo = qualifying income | Retirement <59.5: 70% of balance | Retirement 59.5+: 100% | Non-retirement liquid: 100% | Min FICO 680 | Max LTV 75% purch/R&T, 70% cash-out | Up to $5M
+Asset Dissipation: Documented withdrawals from investment accounts as qualifying income | 24mo statements | Min FICO 700 | Max LTV 70% | Min $1M documented assets
+Foreign National: ITIN accepted | Max LTV 65% | 12mo PITIA reserves
+Bank Statement: Min FICO 640 | Max LTV 80%
+
+=== CREDIT EVENT SEASONING ===
+BK7 discharged: Angel Oak 2yr | Verus/A&D 2-3yr | Deephaven Non-Prime 1 day (LTV/FICO restrictions apply)
+BK13 discharged: 2yr most lenders | Dismissed: 1-2yr
+Foreclosure: Prime lenders 3-4yr | Standard Non-QM 2-3yr | Deephaven 1 day at 65% LTV
+Short Sale/DIL: 2-3yr most Non-QM | Angel Oak 3yr
+Multiple events: Most recent governs; two events in 5yr significantly narrows lender options and LTV
+
+=== PRODUCT MATCHING LOGIC ===
+Self-employed 2+ yrs → Bank Statement (all lenders), P&L (Angel Oak), 1099 if applicable
+Self-employed <2 yrs → challenging; Bank Statement some lenders, P&L (Angel Oak)
+Real estate investor → DSCR (Verus, Deephaven, A&D)
+High-net-worth, significant liquid assets → Asset Depletion/Dissipation (Acra or Verus)
+Foreign national → Verus or Acra Foreign National
+Recent credit events → Deephaven Non-Prime or Angel Oak Non-QM Prime (depends on seasoning)
+Fix & Flip/bridge → A&D exclusively
+W-2 only → likely not Non-QM unless also self-employed or investor
+`;
+
+const SYS_LO = `You are an expert Non-QM mortgage underwriter at East Coast Capital. Analyze the scenario using the knowledge base and provide a structured assessment for a loan originator.
+
+KNOWLEDGE BASE:\n${KB}
+
+Respond using EXACTLY these ## section headers:
+## PRODUCT FIT
+## RECOMMENDED LENDERS
+## REQUIRED DOCUMENTATION
+## RED FLAGS & DEAL KILLERS
+## DEAL NOTES
+
+Be direct, technical, specific. Cite guideline parameters (LTV limits, FICO floors, seasoning). Flag anything that could kill the deal.`;
+
+const SYS_PARTNER = `You are a helpful mortgage advisor assistant for East Coast Capital, managed by Jesse Quartararo (15-year Non-QM specialist). You help CPAs and financial advisors assess whether their clients might qualify for specialized mortgage products.
+
+TONE RULES:
+- Warm, plain English, no jargon
+- NEVER say a deal is impossible or that a client cannot qualify
+- Strong fit: Express genuine optimism
+- Uncertain: Cautious optimism — worth a conversation with Jesse
+- Difficult: "This one might be tricky based on what you've shared — but I may be missing key details. Situations like this often have more options than they first appear. I'd encourage you to reach out to Jesse directly."
+
+KNOWLEDGE BASE:\n${KB}
+
+Respond using EXACTLY these ## section headers:
+## INITIAL IMPRESSION
+## WHAT YOUR CLIENT SHOULD GATHER
+## NEXT STEP
+
+Keep the Next Step section warm and specific — direct them to contact Jesse Quartararo at East Coast Capital.`;
+
+const LO_FIELDS = [
+  {name:'borrowerType', label:'Borrower type', type:'select', options:['','W-2 / Traditional','Self-Employed / Business Owner','Real Estate Investor (DSCR)','High Net Worth / Retired','Foreign National','Independent Contractor / 1099']},
+  {name:'incomeDoc', label:'Income documentation', type:'select', options:['','12-Mo Bank Statement (Personal)','24-Mo Bank Statement (Personal)','12-Mo Bank Statement (Business)','24-Mo Bank Statement (Business)','P&L Only (CPA Prepared)','1099 Income Only','Asset Depletion','Asset Dissipation','DSCR / No Personal Income','No Doc']},
+  {name:'loanPurpose', label:'Loan purpose', type:'select', options:['','Purchase','Rate & Term Refinance','Cash-Out Refinance']},
+  {name:'propertyType', label:'Property type', type:'select', options:['','Single Family (SFR)','Condo (Warrantable)','Condo (Non-Warrantable)','2-4 Unit','5+ Unit Residential','Mixed Use']},
+  {name:'occupancy', label:'Occupancy', type:'select', options:['','Primary Residence','Second Home','Investment Property']},
+  {name:'fico', label:'Estimated FICO', type:'number', placeholder:'e.g. 680'},
+  {name:'ltv', label:'Estimated LTV (%)', type:'number', placeholder:'e.g. 75'},
+  {name:'loanAmount', label:'Loan amount ($)', type:'number', placeholder:'e.g. 850000'},
+  {name:'creditEvent', label:'Credit events', type:'select', options:['None','BK Chapter 7 (discharged)','BK Chapter 13 (discharged)','BK Chapter 13 (dismissed)','Foreclosure','Short Sale','Deed-in-Lieu','Multiple events']},
+  {name:'creditEventMonths', label:'Months since event', type:'number', placeholder:'e.g. 36', showIf: f => f.creditEvent && f.creditEvent !== 'None'},
+];
+
+const PARTNER_FIELDS = [
+  {name:'clientType', label:"What does your client do?", type:'select', full:true, options:['','Owns a business','Real estate investor','High net worth / retired','Employed with complex finances','Other']},
+  {name:'loanPurpose', label:'What are they trying to do?', type:'select', options:['','Buy a property','Refinance a property they own']},
+  {name:'propertyType', label:'Property type', type:'select', options:['','Primary home','Second home / vacation property','Investment / rental property']},
+  {name:'creditProfile', label:'How would you describe their credit?', type:'select', options:['','Excellent (740+)','Good (680–739)','Fair (620–679)','Needs some work (below 620)']},
+  {name:'loanAmount', label:'Approximate loan amount', type:'text', placeholder:'e.g. $850,000'},
+  {name:'creditEvent', label:'Any significant financial events?', type:'select', full:true, options:['No major issues','Bankruptcy in the past','Foreclosure or short sale in the past','Other credit issues']},
+];
+
+const LO_COLORS = {
+  'PRODUCT FIT':            {bg:'var(--info-bg)',    fg:'var(--info-fg)',    bar:'var(--info-bar)'},
+  'RECOMMENDED LENDERS':    {bg:'var(--success-bg)', fg:'var(--success-fg)', bar:'var(--success-bar)'},
+  'REQUIRED DOCUMENTATION': {bg:'var(--warn-bg)',    fg:'var(--warn-fg)',    bar:'var(--warn-bar)'},
+  'RED FLAGS & DEAL KILLERS':{bg:'var(--danger-bg)',  fg:'var(--danger-fg)',  bar:'var(--danger-bar)'},
+  'DEAL NOTES':             {bg:'var(--gray-bg)',    fg:'var(--gray-fg)',    bar:'var(--gray-bar)'},
+};
+
+const PARTNER_COLORS = {
+  'INITIAL IMPRESSION':            {bg:'var(--success-bg)', fg:'var(--success-fg)', bar:'var(--success-bar)'},
+  'WHAT YOUR CLIENT SHOULD GATHER':{bg:'var(--warn-bg)',    fg:'var(--warn-fg)',    bar:'var(--warn-bar)'},
+  'NEXT STEP':                     {bg:'var(--info-bg)',    fg:'var(--info-fg)',    bar:'var(--info-bar)'},
+};
+
+function parseSections(text) {
+  return text.split(/^## /m).filter(Boolean).map(p => {
+    const nl = p.indexOf('\n');
+    return { title: p.slice(0, nl).trim(), content: p.slice(nl + 1).trim() };
+  }).filter(s => s.title && s.content);
+}
+
+function mdToHtml(text) {
+  const lines = text.split('\n');
+  let html = '', inList = false;
+  for (const line of lines) {
+    if (line.startsWith('- ') || line.startsWith('* ')) {
+      if (!inList) { html += '<ul class="res-list">'; inList = true; }
+      html += `<li>${line.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="res-b">$1</strong>')}</li>`;
+    } else {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (line.trim()) {
+        html += `<p class="res-p">${line.replace(/\*\*(.*?)\*\*/g, '<strong class="res-b">$1</strong>')}</p>`;
+      }
+    }
+  }
+  if (inList) html += '</ul>';
+  return html;
+}
+
+let mode = 'lo', form = {}, loading = false, result = null, error = '';
+let apiKey = '';
+let showKey = false;
+try { apiKey = localStorage.getItem('ecc_desk_key') || ''; } catch {}
+
+function render() {
+  const isLO = mode === 'lo';
+  const accent = isLO ? 'var(--accent-lo)' : 'var(--accent-partner)';
+  const fields = isLO ? LO_FIELDS : PARTNER_FIELDS;
+  const visFields = fields.filter(f => !f.showIf || f.showIf(form));
+
+  const keySection = (apiKey && !showKey)
+    ? `<div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text2)">API key ••••${apiKey.slice(-4)}</span>
+        <button onclick="showKey=true;render()" style="font-size:12px;color:${accent};background:none;border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;padding:0">change</button>
+      </div>`
+    : `<div style="display:flex;gap:8px;align-items:center;margin-bottom:1.25rem">
+        <input type="password" id="keyInput" placeholder="Anthropic API key (sk-ant-...)" value="${apiKey}"
+          style="max-width:340px;font-family:'IBM Plex Mono',monospace;font-size:12px"
+          oninput="apiKey=this.value;try{localStorage.setItem('ecc_desk_key',apiKey)}catch{}">
+        ${apiKey ? `<button onclick="showKey=false;render()" style="font-size:12px;color:var(--text2);background:none;border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;padding:0">done</button>` : ''}
+      </div>`;
+
+  const formGrid = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:1rem">
+    ${visFields.map(f => {
+      const val = (form[f.name] || '').toString().replace(/"/g, '&quot;');
+      const full = f.full ? `style="grid-column:1/-1"` : '';
+      const label = `<label style="display:block;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">${f.label}</label>`;
+      if (f.type === 'select') {
+        return `<div ${full}>${label}<select onchange="form['${f.name}']=this.value;render()">${f.options.map(o => `<option value="${o}"${o === val ? ' selected' : ''}>${o || '— select —'}</option>`).join('')}</select></div>`;
+      }
+      return `<div ${full}>${label}<input type="${f.type}" placeholder="${f.placeholder || ''}" value="${val}" oninput="form['${f.name}']=this.value"></div>`;
+    }).join('')}
+  </div>`;
+
+  const notesLabel = isLO ? 'Additional notes' : 'Anything else we should know?';
+  const notesPlaceholder = isLO
+    ? 'Employment history, income trends, compensating factors, unusual circumstances...'
+    : 'Any context that might be helpful...';
+
+  const resultHtml = result ? `
+    <div style="margin-top:2rem">
+      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Scenario analysis</div>
+      ${result.map(s => {
+        const c = (isLO ? LO_COLORS : PARTNER_COLORS)[s.title.toUpperCase()] || {bg:'var(--gray-bg)',fg:'var(--gray-fg)',bar:'var(--gray-bar)'};
+        return `<div style="background:var(--bg);border:0.5px solid var(--border);border-left:3px solid ${c.bar};border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:12px">
+          <div style="display:inline-flex;background:${c.bg};color:${c.fg};border-radius:var(--radius);padding:3px 10px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px">${s.title}</div>
+          <div>${mdToHtml(s.content)}</div>
+        </div>`;
+      }).join('')}
+    </div>` : '';
+
+  document.getElementById('app').innerHTML = `
+    <div style="border-bottom:0.5px solid var(--border);padding-bottom:1.25rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:var(--text)">Non-QM Scenario Desk</div>
+        <div style="font-size:12px;color:var(--text2);margin-top:3px">East Coast Capital &middot; Jesse Quartararo, NMLS# 845007</div>
+      </div>
+      <div style="display:flex;background:var(--bg2);border-radius:var(--radius-lg);padding:3px;gap:2px">
+        ${[['lo','Loan Originator'],['partner','Referral Partner']].map(([m, label]) => `
+          <button onclick="mode='${m}';form={};result=null;error='';render()"
+            style="background:${mode === m ? 'var(--bg)' : 'transparent'};
+                   border:${mode === m ? '0.5px solid var(--border2)' : 'none'};
+                   border-radius:var(--radius);padding:7px 16px;
+                   font-size:13px;font-weight:${mode === m ? 500 : 400};
+                   color:${mode === m ? 'var(--text)' : 'var(--text2)'};
+                   cursor:pointer;transition:all 0.15s">${label}</button>
+        `).join('')}
+      </div>
+    </div>
+
+    ${keySection}
+
+    <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.25rem 1rem;margin-bottom:1rem">
+      <div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem">${isLO ? 'Scenario details' : 'Client overview'}</div>
+      ${formGrid}
+      <div>
+        <label style="display:block;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">${notesLabel}</label>
+        <textarea rows="3" placeholder="${notesPlaceholder}" oninput="form.notes=this.value">${(form.notes||'').replace(/</g,'&lt;')}</textarea>
+      </div>
+    </div>
+
+    <button onclick="runScenario()" ${loading ? 'disabled' : ''}
+      style="background:${loading ? 'var(--text3)' : accent};color:#fff;border:none;
+             border-radius:var(--radius);padding:11px 30px;font-size:14px;font-weight:500;
+             cursor:${loading ? 'not-allowed' : 'pointer'};transition:opacity 0.15s">
+      ${loading ? 'Analyzing&hellip;' : 'Run Scenario'}
+    </button>
+
+    ${error ? `<div style="margin-top:1rem;padding:12px 16px;background:var(--danger-bg);border-radius:var(--radius);color:var(--danger-fg);font-size:13px">${error}</div>` : ''}
+
+    ${resultHtml}
+  `;
+}
+
+async function runScenario() {
+  if (!apiKey) { error = 'Please enter your Anthropic API key above.'; render(); return; }
+  loading = true; error = ''; result = null; render();
+
+  const isLO = mode === 'lo';
+  const sys = isLO ? SYS_LO : SYS_PARTNER;
+
+  let msg;
+  if (isLO) {
+    msg = `Analyze this Non-QM scenario:
+Borrower type: ${form.borrowerType || 'Not specified'}
+Income documentation: ${form.incomeDoc || 'Not specified'}
+Loan purpose: ${form.loanPurpose || 'Not specified'}
+Property type: ${form.propertyType || 'Not specified'}
+Occupancy: ${form.occupancy || 'Not specified'}
+Estimated FICO: ${form.fico || 'Not specified'}
+Estimated LTV: ${form.ltv ? form.ltv + '%' : 'Not specified'}
+Loan amount: ${form.loanAmount ? '$' + Number(form.loanAmount).toLocaleString() : 'Not specified'}
+Credit events: ${form.creditEvent || 'None'}${form.creditEventMonths ? ', ' + form.creditEventMonths + ' months ago' : ''}
+Additional notes: ${form.notes || 'None'}`;
+  } else {
+    msg = `Evaluate this client situation:
+Client type: ${form.clientType || 'Not specified'}
+Loan purpose: ${form.loanPurpose || 'Not specified'}
+Property type: ${form.propertyType || 'Not specified'}
+Credit profile: ${form.creditProfile || 'Not specified'}
+Approximate loan amount: ${form.loanAmount || 'Not specified'}
+Financial events: ${form.creditEvent || 'None'}
+Additional context: ${form.notes || 'None'}`;
+  }
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1200,
+        system: sys,
+        messages: [{ role: 'user', content: msg }]
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const text = data.content?.map(b => b.text || '').join('') || '';
+    result = parseSections(text);
+    if (!result.length) throw new Error('Unexpected response format. Try again.');
+  } catch (e) {
+    error = 'Error: ' + e.message;
+  } finally {
+    loading = false; render();
+  }
+}
+
+render();
+</script>
+</body>
+</html>

@@ -423,9 +423,9 @@ function render() {
         var full = f.full ? 'style="grid-column:1/-1"' : '';
         var label = '<label style="display:block;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">' + f.label + '</label>';
         if (f.type === 'select') {
-          return '<div ' + full + '>' + label + '<select onchange="form[\'' + f.name + '\']=this.value;render()">' + f.options.map(function(o){ return '<option value="' + o + '"' + (o === val ? ' selected' : '') + '>' + (o || '&mdash; select &mdash;') + '</option>'; }).join('') + '</select></div>';
+          return '<div ' + full + '>' + label + '<select data-field="' + f.name + '" onchange="form[\'' + f.name + '\']=this.value;render()">' + f.options.map(function(o){ return '<option value="' + o + '"' + (o === val ? ' selected' : '') + '>' + (o || '&mdash; select &mdash;') + '</option>'; }).join('') + '</select></div>';
         }
-        return '<div ' + full + '>' + label + '<input type="' + f.type + '" placeholder="' + (f.placeholder || '') + '" value="' + val + '" oninput="form[\'' + f.name + '\']=this.value"></div>';
+        return '<div ' + full + '>' + label + '<input data-field="' + f.name + '" type="' + f.type + '" placeholder="' + (f.placeholder || '') + '" value="' + val + '" oninput="form[\'' + f.name + '\']=this.value"></div>';
       }).join('')
     + '</div>';
 
@@ -463,8 +463,45 @@ function render() {
     + resultHtml;
 }
 
+function captureFormInputs() {
+  var inputs = document.querySelectorAll('#app [data-field]');
+  for (var i = 0; i < inputs.length; i++) {
+    var el = inputs[i];
+    var fieldName = el.getAttribute('data-field');
+    if (fieldName && el.value !== undefined) {
+      form[fieldName] = el.value;
+    }
+  }
+  var ta = document.querySelector('#app textarea');
+  if (ta) form.notes = ta.value;
+}
+
 async function runScenario() {
+  captureFormInputs();
   if (!apiKey) { error = 'Please enter your Anthropic API key above.'; render(); return; }
+
+  var isLOcheck = mode === 'lo';
+  if (isLOcheck) {
+    var missing = [];
+    if (!form.borrowerType) missing.push('Borrower type');
+    if (!form.loanPurpose) missing.push('Loan purpose');
+    if (!form.occupancy) missing.push('Occupancy');
+    if (!form.fico) missing.push('Estimated FICO');
+    if (!form.loanAmount) missing.push('Loan amount');
+    if (missing.length) {
+      error = 'Please fill in the following required fields before running: ' + missing.join(', ') + '.';
+      render(); return;
+    }
+  } else {
+    var missingP = [];
+    if (!form.clientType) missingP.push('What does your client do?');
+    if (!form.loanPurpose) missingP.push('What are they trying to do?');
+    if (missingP.length) {
+      error = 'Please fill in the following before running: ' + missingP.join(', ') + '.';
+      render(); return;
+    }
+  }
+
   loading = true; error = ''; result = null; render();
 
   var isLO = mode === 'lo';

@@ -477,7 +477,7 @@ Foreign national: Foreign National program (700+ FICO or no score, 2nd home or i
 
 var SYS_LO = 'You are an expert Non-QM mortgage underwriter at East Coast Capital with deep knowledge of NQM Funding and MAXEX guidelines. Analyze the scenario using the knowledge base and provide a structured assessment for a loan originator.\n\nKNOWLEDGE BASE:\n' + KB + '\n\nRespond using EXACTLY these ## section headers:\n## PRODUCT FIT\n## RECOMMENDED LENDERS\n## REQUIRED DOCUMENTATION\n## RED FLAGS & DEAL KILLERS\n## DEAL NOTES\n\nFor RECOMMENDED LENDERS: Cite specific program names (e.g. NQM Funding Flex Select, MAXEX Non-QM13) with the exact FICO floor, max LTV, and any key overlays that apply. If multiple programs fit, rank them. If neither lender can do the deal, say so clearly and explain the disqualifying factor(s). Be direct and technical.';
 
-var SYS_PARTNER = 'You are a helpful mortgage advisor assistant for East Coast Capital, managed by Jesse Quartararo (15-year Non-QM specialist). You help CPAs and financial advisors assess whether their clients might qualify for specialized mortgage products through NQM Funding.\n\nTONE RULES:\n- Warm, plain English, no jargon\n- NEVER say a deal is impossible or that a client cannot qualify\n- Strong fit: Express genuine optimism\n- Uncertain: Cautious optimism, worth a conversation with Jesse\n- Difficult: say this situation might be tricky based on what you have shared, but you may be missing key details, situations like this often have more options than they first appear, encourage them to reach out to Jesse directly\n\nKNOWLEDGE BASE:\n' + KB + '\n\nRespond using EXACTLY these ## section headers:\n## INITIAL IMPRESSION\n## WHAT YOUR CLIENT SHOULD GATHER\n## NEXT STEP\n\nKeep the Next Step section warm and specific, directing them to contact Jesse Quartararo at East Coast Capital.';
+var SYS_PARTNER = 'You are a helpful mortgage advisor assistant for East Coast Capital, managed by Jesse Quartararo (15-year Non-QM specialist). You help CPAs and financial advisors assess whether their clients might qualify for specialized mortgage products.\n\nTONE RULES:\n- Warm, plain English, no jargon\n- NEVER mention specific lender or investor names in your response\n- NEVER say a deal is impossible or that a client cannot qualify\n- Strong fit: Express genuine optimism\n- Uncertain: Cautious optimism, worth a conversation with Jesse\n- Difficult: say this situation might be tricky based on what you have shared, but you may be missing key details, situations like this often have more options than they first appear, encourage them to reach out to Jesse directly\n- In the Initial Impression section, briefly explain WHY this likely needs a specialized (Non-QM) mortgage rather than a conventional loan — in plain language the referral partner can use with their client\n\nKNOWLEDGE BASE:\n' + KB + '\n\nRespond using EXACTLY these ## section headers:\n## INITIAL IMPRESSION\n## WHAT YOUR CLIENT SHOULD GATHER\n## NEXT STEP\n\nIn INITIAL IMPRESSION: Start by explaining in one or two plain-English sentences why this situation likely falls outside conventional mortgage guidelines, then give your overall read on the scenario. Never name specific lenders or investors.\nIn WHAT YOUR CLIENT SHOULD GATHER: List the documents needed in plain language. No lender names.\nIn NEXT STEP: Warm, specific, direct them to contact Jesse Quartararo at East Coast Capital.';
 
 var LO_FIELDS = [
   {name:'borrowerType', label:'Borrower type', type:'select', options:['','W-2 / Traditional','Self-Employed / Business Owner','Real Estate Investor (DSCR)','High Net Worth / Retired','Foreign National','ITIN Borrower','Independent Contractor / 1099']},
@@ -494,12 +494,15 @@ var LO_FIELDS = [
 ];
 
 var PARTNER_FIELDS = [
-  {name:'clientType', label:'What does your client do?', type:'select', full:true, options:['','Owns a business','Real estate investor','High net worth / retired','Employed with complex finances','Foreign national','Other']},
+  {name:'clientType', label:'What does your client do?', type:'select', full:true, options:['','Owns a business / self-employed','Real estate investor','High net worth / retired','Employed (W-2) with complex finances','Foreign national','Other']},
+  {name:'taxReturnIncome', label:'Does their tax return reflect strong income?', type:'select', full:true, options:['','Yes — tax returns show solid qualifying income','No — income is reduced by business write-offs or deductions','They are a real estate investor (DSCR / rental income)','Not sure / haven\'t looked at returns yet'], showIf: function(f){ return f.clientType && f.clientType !== '' && f.clientType !== 'Real estate investor' && f.clientType !== 'Foreign national'; }},
+  {name:'employmentLength', label:'How long have they been self-employed or in this role?', type:'select', full:true, options:['','Less than 1 year','1 to 2 years','More than 2 years','Not self-employed'], showIf: function(f){ return f.clientType === 'Owns a business / self-employed'; }},
   {name:'loanPurpose', label:'What are they trying to do?', type:'select', options:['','Buy a property','Refinance a property they own']},
   {name:'propertyType', label:'Property type', type:'select', options:['','Primary home','Second home / vacation property','Investment / rental property','Multi-unit investment (5+ units)']},
-  {name:'creditProfile', label:'How would you describe their credit?', type:'select', options:['','Excellent (740+)','Good (680-739)','Fair (620-679)','Needs some work (below 620)']},
+  {name:'creditProfile', label:'How would you describe their credit?', type:'select', options:['','Excellent (740+)','Good (680–739)','Fair (620–679)','Needs some work (below 620)']},
+  {name:'creditEvent', label:'Any significant financial events in the past 7 years?', type:'select', full:true, options:['No major issues','Bankruptcy','Foreclosure or short sale','Loan modification','Other credit issues']},
+  {name:'citizenshipStatus', label:'Citizenship / residency status', type:'select', options:['','US Citizen','Permanent Resident','Visa / Non-Permanent Resident','Foreign National (lives outside US)']},
   {name:'loanAmount', label:'Approximate loan amount', type:'text', placeholder:'e.g. $850,000'},
-  {name:'creditEvent', label:'Any significant financial events?', type:'select', full:true, options:['No major issues','Bankruptcy in the past','Foreclosure or short sale in the past','Other credit issues']},
 ];
 
 var LO_COLORS = {
@@ -636,6 +639,7 @@ async function runScenario() {
     var missingP = [];
     if (!form.clientType) missingP.push('What does your client do?');
     if (!form.loanPurpose) missingP.push('What are they trying to do?');
+    if (!form.creditProfile) missingP.push('Credit profile');
     if (missingP.length) {
       error = 'Please fill in the following before running: ' + missingP.join(', ') + '.';
       render(); return;
@@ -664,11 +668,14 @@ async function runScenario() {
   } else {
     msg = 'Evaluate this client situation:\n'
       + 'Client type: ' + (form.clientType || 'Not specified') + '\n'
+      + (form.taxReturnIncome ? 'Tax return income picture: ' + form.taxReturnIncome + '\n' : '')
+      + (form.employmentLength ? 'Self-employment length: ' + form.employmentLength + '\n' : '')
       + 'Loan purpose: ' + (form.loanPurpose || 'Not specified') + '\n'
       + 'Property type: ' + (form.propertyType || 'Not specified') + '\n'
       + 'Credit profile: ' + (form.creditProfile || 'Not specified') + '\n'
+      + 'Significant credit events: ' + (form.creditEvent || 'None') + '\n'
+      + 'Citizenship / residency: ' + (form.citizenshipStatus || 'Not specified') + '\n'
       + 'Approximate loan amount: ' + (form.loanAmount || 'Not specified') + '\n'
-      + 'Financial events: ' + (form.creditEvent || 'None') + '\n'
       + 'Additional context: ' + (form.notes || 'None');
   }
 

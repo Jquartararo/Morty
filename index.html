@@ -8,18 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #ffffff;
-    --bg2: #f5f5f3;
-    --bg3: #eeede9;
-    --text: #1a1a18;
-    --text2: #5f5e5a;
-    --text3: #888780;
-    --border: rgba(0,0,0,0.12);
-    --border2: rgba(0,0,0,0.22);
-    --accent-lo: #BA7517;
-    --accent-partner: #0F6E56;
+    --bg: #ffffff; --bg2: #f5f5f3; --bg3: #eeede9;
+    --text: #1a1a18; --text2: #5f5e5a; --text3: #888780;
+    --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.22);
+    --accent-lo: #BA7517; --accent-partner: #0F6E56;
     --info-bg: #E6F1FB; --info-fg: #0C447C; --info-bar: #185FA5;
     --success-bg: #EAF3DE; --success-fg: #27500A; --success-bar: #3B6D11;
     --warn-bg: #FAEEDA; --warn-fg: #633806; --warn-bar: #BA7517;
@@ -27,7 +20,6 @@
     --gray-bg: #F1EFE8; --gray-fg: #444441; --gray-bar: #5F5E5A;
     --radius: 8px; --radius-lg: 12px;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
@@ -40,41 +32,16 @@
       --gray-bg: #2C2C2A; --gray-fg: #D3D1C7; --gray-bar: #888780;
     }
   }
-
-  body {
-    font-family: 'IBM Plex Sans', sans-serif;
-    background: var(--bg3);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-  }
-
-  #app {
-    max-width: 820px;
-    margin: 0 auto;
-    background: var(--bg);
-    border-radius: 16px;
-    border: 0.5px solid var(--border);
-    padding: 2rem 2rem 2.5rem;
-  }
-
+  body { font-family: 'IBM Plex Sans', sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; padding: 2rem 1rem 4rem; }
+  #app { max-width: 820px; margin: 0 auto; background: var(--bg); border-radius: 16px; border: 0.5px solid var(--border); padding: 2rem 2rem 2.5rem; }
   select, input[type="text"], input[type="number"], input[type="password"], textarea {
-    width: 100%;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 13px;
-    padding: 7px 10px;
-    border: 0.5px solid var(--border2);
-    border-radius: var(--radius);
-    background: var(--bg);
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.15s;
-    -webkit-appearance: none;
+    width: 100%; font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; padding: 7px 10px;
+    border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg);
+    color: var(--text); outline: none; transition: border-color 0.15s; -webkit-appearance: none;
   }
   select:focus, input:focus, textarea:focus { border-color: var(--text3); }
   textarea { resize: vertical; line-height: 1.5; }
   button { font-family: 'IBM Plex Sans', sans-serif; cursor: pointer; }
-
   ul.res-list { margin: 4px 0 6px; padding-left: 1.25rem; }
   ul.res-list li { margin-bottom: 3px; font-size: 13.5px; line-height: 1.65; color: var(--text); }
   p.res-p { margin: 3px 0; font-size: 13.5px; line-height: 1.65; color: var(--text); }
@@ -83,120 +50,319 @@
 </head>
 <body>
 <div id="app"></div>
-
 <script>
-const KB = `
+var KB = `
 EAST COAST CAPITAL NON-QM LENDER KNOWLEDGE BASE
-(PLACEHOLDER - Jesse will replace with actual approved lender guidelines)
+Effective 2/13/2026
 
-VERUS MORTGAGE CAPITAL
-Products: Bank Statement (12/24mo), DSCR, Foreign National, Asset Depletion
-Bank Statement: Min FICO 660, Max LTV 85% purch/80% R&T/75% cash-out, $150K-$3.5M, 12 or 24mo personal or business, Business 50% expense factor default CPA letter can override, Max DTI 50%, 2yr self-employment required
-DSCR: Min FICO 640, Max LTV 80% purch/75% R&T/70% cash-out, Min DSCR 1.0 (below-1.0: 680+ FICO 65% LTV max), No-ratio: 660+ FICO 70% LTV max, Short-term rental AirDNA or lease ok, SFR 2-4 unit non-warrantable condo eligible
-Foreign National: No US FICO, Max LTV 65%, 12mo PITIA reserves, Purchase and R&T only
-Asset Depletion: Eligible assets divided by 84mo equals qualifying income, Min FICO 680, Max LTV 75%
+================================================================
+LENDER: NQM FUNDING (NQM FUNDING, LLC)
+================================================================
 
-ANGEL OAK MORTGAGE SOLUTIONS
-Products: Bank Statement, 1099, P&L Only, Non-QM Prime
-Bank Statement: Min FICO 600, Max LTV 90% purch (720+ FICO)/85% R&T/80% cash-out, $100K-$3M, 12 or 24mo personal or business, Asset qualifier overlay available
-1099 Only: 1 or 2 years, Min FICO 660, Max LTV 85% purch/80% refi, Gig workers independent contractors commissioned sales
-P&L Only: CPA-prepared 12 or 24mo, Min FICO 660, Max LTV 80% purch/75% refi, No bank statements required
-Non-QM Prime credit events: BK7 discharged 2yr, Foreclosure 3yr, Short sale/DIL 3yr
+PROGRAMS OFFERED:
+Flex Supreme, Flex Select, Select ITIN, Super Jumbo, Second Lien Select,
+DSCR Supreme, Investor DSCR, Investor DSCR No Ratio, DSCR Multi (5-8 Units), Foreign National
 
-DEEPHAVEN MORTGAGE
-Products: DSCR, Bank Statement, Non-Prime
-DSCR: Min FICO 620, Max LTV 80% purch/75% R&T/70% cash-out, Min DSCR 1.0, No-ratio 660+ FICO, SFR 2-4 unit warrantable/non-warrantable condo
-Non-Prime: Min FICO 500, FICO tiers: 500-519 = 65% LTV, 520-559 = 70%, 560-619 = 75%, 620+ = 80%, BK7 1 day out allowed, Foreclosure 1 day at 65% LTV
-Bank Statement Non-Prime: Min FICO 580, Max LTV 75%, 12 or 24mo
+--- GEOGRAPHIC RESTRICTIONS (ALL PROGRAMS) ---
+DC: Investment Properties ineligible.
+FL: Non-Permanent Resident Aliens from Peoples Republic of China ineligible. Charlotte, Lee, Hendry, Glades Counties: Investment Properties ineligible.
+IL: Cook County all occupancies ineligible. Kane, Peoria, Will Counties ineligible for TRID loans (not Correspondents).
+IN: Indianapolis Investment Properties ineligible.
+MD: Baltimore City all occupancies ineligible.
+NJ: No 2nd liens wholesale/retail. Patterson Investment Properties ineligible.
+NY: Wholesale TRID loans temporarily halted. No 2nd liens wholesale/retail. Brooklyn Investment Properties require field review. Orange County all occupancies ineligible. No 5/6 ARMs on Investment below FNMA loan limit. No Short Term Rentals in NYC 5 Boroughs.
+PA: Zip Codes 19121 and 19132 lending temporarily suspended. No DSCR Row Homes in Philadelphia.
+TN: Memphis appraisal transfers not permitted wholesale; field review required.
+TX: No 2nd liens wholesale/retail. Lubbock Investment Properties ineligible.
 
-A&D MORTGAGE
-Products: Bank Statement, DSCR, Fix and Flip/Bridge, 1099
-Bank Statement: Min FICO 620, Max LTV 85% purch/80% R&T/75% cash-out
-DSCR: Min FICO 600, Max LTV 80%, Strong on 5+ unit residential DSCR
-Fix and Flip/Bridge: 90% purch plus 100% rehab max 75% ARV, Min FICO 620, $75K-$5M, IO during rehab
-1099: 1 or 2 years, Min FICO 640, Max LTV 80%
+--- GENERAL REQUIREMENTS (ALL PROGRAMS) ---
+Escrow Waivers: Non-HPML only, permitted to 80% LTV. CA: up to 90% LTV with 700+ score. Required for flood zones A/V. Not permitted on Super Jumbo, ITIN, DSCR No Ratio, DSCR Multi, Foreign National.
+Age of Documents: Credit/Appraisal 120 days; Income/Assets 90 days.
+Interested Party Contributions: Super Jumbo all = 6%. Primary/2nd home <=75% LTV = 9%; >75% = 6%. Investment = 6%. Not on 2nd liens.
 
-ACRA LENDING
-Products: Asset Depletion, Asset Dissipation, Bank Statement, Foreign National
-Asset Depletion: Assets divided by 84mo equals qualifying income, Retirement under 59.5: 70% of balance, Retirement 59.5+: 100%, Non-retirement liquid: 100%, Min FICO 680, Max LTV 75% purch/R&T and 70% cash-out, Up to $5M
-Asset Dissipation: Documented withdrawals from investment accounts as qualifying income, 24mo statements, Min FICO 700, Max LTV 70%, Min $1M documented assets
-Foreign National: ITIN accepted, Max LTV 65%, 12mo PITIA reserves
-Bank Statement: Min FICO 640, Max LTV 80%
+--- FLEX SUPREME ---
+Eligible Borrowers: US Citizens, Permanent Resident Aliens, Non-Permanent Residents with US Credit. Ineligible: ITINs, DACA, Foreign Nationals.
+Occupancy: Primary, Second Home, Investment.
+Loan Amounts: $100K min, $3M max.
+Product Types: 30yr Fixed, 30/40yr Fixed I/O (10yr I/O), 5/6 and 7/6 SOFR ARMs.
+Interest Only: Permitted per matrix. Not for First Time Homebuyers.
+Credit Events: Min 4 years seasoning required.
+Min FICO: 680
+LTV Matrix (Primary, SFR/PUD/Warrantable Condo/2-4 Units):
+  740 FICO / $2M: 80% purch/R&T, 75% cash-out
+  740 FICO / $2.5M: 80% purch/R&T, 65% cash-out
+  740 FICO / $3M: 75% purch/R&T, N/A cash-out
+  700 FICO / $2M: 80% purch/R&T, 75% cash-out
+  700 FICO / $2.5M: 75% purch/R&T, 65% cash-out
+  700 FICO / $3M: 70% purch/R&T, N/A cash-out
+  680 FICO / $2M: 75% purch/R&T, 70% cash-out
+Investment same as Primary at each FICO/loan tier.
+Second Home (SFR/Warrantable Condo only, no 2-4 units):
+  700 FICO / $2M: 80%, 75% cash-out
+  700 FICO / $2.5M: 75%, 65% cash-out
+  680 FICO / $2M: 75%, 70% cash-out
+Max DTI: 50%.
+Reserves: <=500K=3mo; >500K-1.5M=6mo; >1.5M-2.5M=9mo; >2.5M-3M=12mo. Cash-out proceeds ok.
+Housing History: 0x30x12.
+Income Docs: Full Doc (W-2/paystubs/tax returns) or Alt Doc (12/24mo personal or business bank statements, 50% expense ratio default or CPA letter min 20%, 1099 at 10% expense ratio).
+Asset Utilization: DTI <=60% = assets/36mo; DTI >60% or sole income = assets/60mo. Assets seasoned 3mo.
+Property: SFR, PUD, Townhome, 2-4 Units, Warrantable Condo only (no non-warrantable). No condotels/co-ops.
+Exceptions: Ineligible.
 
-CREDIT EVENT SEASONING
-BK7 discharged: Angel Oak 2yr, Verus/A&D 2-3yr, Deephaven Non-Prime 1 day (LTV/FICO restrictions apply)
-BK13 discharged: 2yr most lenders, Dismissed: 1-2yr
-Foreclosure: Prime lenders 3-4yr, Standard Non-QM 2-3yr, Deephaven 1 day at 65% LTV
-Short Sale/DIL: 2-3yr most Non-QM, Angel Oak 3yr
-Multiple events: Most recent governs; two events in 5yr significantly narrows lender options and LTV
+--- FLEX SELECT ---
+Eligible Borrowers: US Citizens, Permanent Resident Aliens, Non-Permanent Residents with US Credit. Ineligible: ITINs, DACA, Foreign Nationals.
+Occupancy: Primary, Second Home, Investment.
+Loan Amounts: $100K min, $3.5M max.
+Min FICO: 660
+Product Types: 40/30/15yr Fixed, 30/40yr Fixed I/O (10yr I/O), 5/6 SOFR ARM, 5/6 SOFR ARM I/O.
+Interest Only: Min 680 FICO, Max 80% LTV, Max 50% DTI. Ineligible on Manufactured Housing/Express DU.
+Primary Residence LTV Matrix (SFR, PUD, Manufactured Housing, Warrantable and Non-Warrantable Condo, Condotels, Co-ops, 2-4 Units):
+  760 / $2M: 90% purch, 80% cash-out
+  760 / $2.5M: 80% purch, 75% cash-out
+  760 / $3M: 80% purch, 70% cash-out
+  760 / $3.5M: 75% purch, 70% cash-out
+  740 / $2M: 90%, 80%; $2.5M: 80%,75%; $3M: 80%,70%; $3.5M: 75%,70%
+  720 / $2M: 90%, 80%; $2.5M: 80%,75%; $3M: 80%,70%; $3.5M: 75%,70%
+  700 / $1.5M: 85%,80%; $2M: 80%,75%; $2.5M: 80%,70%; $3.5M: 75%,70%
+  680 / $2M: 80%,75%; $2.5M: 75%,70%; $3M: 70%,65%
+  660 / $1M: 80%,70%; $1.5M: 75%,65%; $2.5M: 70%,60%
+Credit Events Seasoning:
+  4+ years: Max LTV 90%, Max cash-out 80%, Max loan $3.5M
+  3+ years: Max LTV 80%, Max cash-out 75%, Max loan $3M
+  2+ years: Max LTV 70%, Max cash-out 70%, Max loan $2M
+Housing History: 1x30x12 max; 3x30x12 allowed with 0x30 last 6mo and 10% LTV reduction.
+Max DTI: 50%; 55% allowed with 680+ FICO, 80% LTV max, 0x30x12, $2.5M max loan, $3,500 residual.
+Self-Employment: 2 years minimum (exceptions for licensed professionals 18+ months with 3+ years prior experience, min 700 FICO, max 80/75/70% LTV).
+Alt Doc options: 12/24mo personal bank statements, 12/24mo business bank statements (50% expense ratio or CPA min 20%), P&L Plus 2 months bank statements (max 80% LTV), P&L Only (700+ FICO, max $1.5M, max 80% primary/75% 2nd and investment).
+1099: 1 or 2 years, 10% expense ratio.
+WVOE: Max $1.5M, 680+ FICO prim 80%/2nd and inv 75%, 0x30x12 required.
+Asset Utilization: Assets/36mo (DTI<=60%) or assets/60mo (DTI>60% or sole income). Assets seasoned 3mo.
+Property: SFR, PUD, Townhome, 2-4 Units (not for 2nd homes), Warrantable and Non-Warrantable Condo, Condotel, Co-ops (Delegated Correspondent only, NYC 5 Boroughs only, max 80% LTV), Manufactured Homes (Delegated Correspondent only, 680+ FICO, max 80% LTV, purchase/R&T only).
+Express DU: FNMA DU only, max $2M at <=85% LTV, max $1.5M at >85% LTV, min 760 for >85%.
+Exceptions: Eligible except P&L Only and Express DU.
+Reserves: <=500K and <=80% LTV = 3mo; <=500K and >80% LTV = 6mo; >500K-1.5M = 6mo; >1.5M-2.5M = 9mo; >2.5M-3.5M = 12mo.
 
-PRODUCT MATCHING LOGIC
-Self-employed 2+ yrs: Bank Statement all lenders, P&L Angel Oak, 1099 if applicable
-Self-employed under 2 yrs: challenging, Bank Statement some lenders, P&L Angel Oak
-Real estate investor: DSCR via Verus Deephaven A&D
-High-net-worth significant liquid assets: Asset Depletion/Dissipation via Acra or Verus
-Foreign national: Verus or Acra Foreign National
-Recent credit events: Deephaven Non-Prime or Angel Oak Non-QM Prime depending on seasoning
-Fix and Flip/bridge: A&D exclusively
-W-2 only: likely not Non-QM unless also self-employed or investor
+--- SELECT ITIN ---
+Eligible Borrowers: ITIN with 2 years consistent ITIN payments to IRS. DACA eligible with ITIN/SSN and EAD C33 status. Ineligible: Inter-Vivos Revocable Trust, Entity Vesting.
+Min FICO: 660
+Loan Amounts: $125K min, $2.5M max.
+Occupancy: Primary, Second Home, Investment.
+Primary LTV (Full Doc / Alt Doc):
+  740 / $1.5M: 85/80% purch, 80% cash-out
+  740 / $2M: 80/80%, 80%
+  740 / $2.5M: 75/75%, 70%
+  720 / $1.5M: 85/80%, 80%
+  700 / $1.5M: 85/80%, 80%; $2M: 70/70%, 70%
+  680 / $1.5M: 80/80%, 75%
+  660 / $1.5M: 75/75%, 65%
+Housing History: 0x30x12. Credit events: 4 years seasoning.
+Max DTI: 50%.
+Subordinate Financing: Ineligible.
+Property: SFR, PUD, Townhome, 2-4 Units, Warrantable and Non-Warrantable Condo.
+Reserves: <=500K and <=80% = 3mo; <=500K and >80% = 6mo; >500K-1.5M = 6mo; >1.5M-2.5M = 9mo.
+
+--- SUPER JUMBO ---
+Eligible Borrowers: US Citizens, Permanent Resident Aliens, Non-Permanent Residents. Ineligible: ITINs, DACA, Foreign Nationals.
+Occupancy: Primary Residence ONLY.
+Loan Amounts: $3.5M to $5M.
+Min FICO: 720.
+Product Types: 30yr Fixed, 40yr Fixed I/O.
+Max DTI: 38%.
+Housing History: 0x30x24.
+Credit Events: 4 years seasoning.
+LTV Matrix:
+  740 / $3.5M-$4M: 70% purch/R&T, 60% cash-out
+  720 / $3.5M-$4M: 65% purch/R&T, 55% cash-out
+  740 / $4M-$4.5M: 65%, 55%
+  720 / $4M-$4.5M: 60%, 50%
+  740 / $4.5M-$5M: 65%, 55%
+  720 / $4.5M-$5M: 60%, 50%
+Cash-Out: Max $1.5M. Cash-out proceeds cannot be used for reserves.
+Reserves: >$3.5M-4M = 12mo; >$4M-5M = 18mo.
+Alt Doc: 24mo personal or business bank statements ONLY. Asset Utilization as sole source = assets/84mo.
+Exceptions: Ineligible. No non-occupant co-borrowers. No FTHB.
+Property: SFR, PUD, Townhome, Warrantable/Non-Warrantable Condo. No rural. Max 2 acres.
+
+--- SECOND LIEN SELECT ---
+Min FICO: 700.
+Loan Amounts: $50K min, $1M max.
+Occupancy: Primary, Second Home, Investment.
+Lien Position: 2nd only (stand alone or piggyback).
+Interest Only: Ineligible.
+Max DTI: 50%.
+Housing History: 0x30x12 all mortgages. Min 12 months housing history. Rent free ineligible.
+Credit Events: Min 4 years; no multiple events in last 7 years.
+Primary LTV (Min 720 FICO):
+  Up to $350K: 85% CLTV, $3M combined
+  $500K: 85% CLTV, $3M combined
+  $750K: 80% CLTV, $3.5M combined
+  $1M: 75% CLTV, $4M combined
+Primary LTV (Min 700 FICO):
+  Up to $350K: 85% CLTV; $500K: 85%; $750K: 80%
+Investment (720 FICO): $350K-$750K: 75-80% CLTV; $1M: 65% CLTV.
+DSCR Investment (Business Purpose Only):
+  720 / $350K-750K: 70-75% CLTV; $1M: 60% CLTV
+  700 / $350K-500K: 70-75% CLTV; $750K: 65% CLTV
+Seasoning (Stand Alone): >6 months ownership required.
+Properties listed for sale in last 6 months: Ineligible.
+Gift Funds: Ineligible.
+Reserves: <=500K=3mo; >500K-1M=6mo.
+Alt Doc: 12/24mo personal or business bank statements, P&L Plus 2mo (reduce CLTV 5%), 1099.
+Asset Utilization: Reduce CLTV by 5%.
+Property: SFR, PUD, Townhome; 2-4 Units (70% CLTV max, not for 2nd homes); Warrantable Condo only.
+
+--- DSCR SUPREME ---
+Occupancy: Investment Properties ONLY (Business Purpose).
+Min FICO: 720. Additional borrowers min 640.
+Loan Amounts: $150K min, $2M max.
+Product Types: 30yr Fixed, 30yr and 40yr Fixed I/O, 5/6 and 7/6 SOFR ARMs.
+DSCR Ratio: Min 1.00; Min 1.15 for Short Term Rentals.
+No Ratio: Not available on this program.
+LTV Matrix:
+  740 / $2M: 80% purch/R&T, 75% cash-out
+  720 / $1.5M: 80%, 75%
+  720 / $2M: 75%, 70%
+Entity Vesting: Eligible. Max 20 financed properties including LLCs.
+Housing History: 0x30x12.
+Credit Events: 4 years seasoning; Chapter 13 discharged 1+ years using filing date.
+Reserves: <=500K=3mo; >500K-2M=6mo. Cash-out ok.
+No rural properties. Max 2 acres.
+STR: Eligible refinance only. Min DSCR 1.15. Max 75% LTV. Not in NYC 5 boroughs.
+Rent Loss Insurance required = 6 months PITIA (or waived with 3 additional months reserves, not from cash-out).
+Warrantable Condo: Max 75% LTV. 2-4 Units: Reduce matrix LTV by 5%.
+
+--- INVESTOR DSCR ---
+Occupancy: Investment Properties (Business Purpose).
+Min FICO: 660. Additional borrowers min 640.
+Loan Amounts: $75K min, $3M max.
+DSCR tiers: >=1.00, >=0.75 to <1.00.
+No Ratio: Not this program - see Investor DSCR No Ratio.
+LTV Matrix (>=1.00 DSCR, 740 FICO):
+  $100K: 70% purch, 65% cash-out
+  $125K: 75%, 70%
+  $150K: 80%, 75%
+  $1M: 85%, 75%
+  $1.5M: 85%, 70%
+  $2M: 75%, 60%
+  $2.5M-3M: 70%, 60%
+LTV Matrix (>=0.75 <1.00 DSCR, 740 FICO):
+  $1M-2M: 75% purch/R&T, 70% cash-out (720 and 700 similar tiers)
+  680 FICO: $1M: 65%, 60%
+Product Types: 30yr and 15yr Fixed, 40yr Fixed I/O (max 75% LTV), 30yr Fixed I/O (max 80% LTV).
+Entity Vesting: Eligible. Max 20 financed properties.
+Housing History: 0x30x12 no reduction; 1x30x12 = 5% LTV reduction.
+Credit Events: >=24 months no LTV reduction.
+STR: Min DSCR 1.15, max 75% LTV, not NYC 5 boroughs.
+Condotels: Max $1.5M. 700+ = 70% purch; 680 = 65% purch.
+2-4 Units: 2 units refinance max 80%; 3-4 units >=1.00 DSCR refi max 75%; <1.00 DSCR refi max 70%.
+Rent Loss Insurance required.
+Reserves: <=500K and <=80% = 3mo; <=500K and >80% = 6mo; >500K-2M = 6mo; >2M = 12mo.
+
+--- INVESTOR DSCR NO RATIO ---
+Occupancy: Investment Properties (Business Purpose).
+Min FICO: 700. Additional borrowers min 640.
+Loan Amounts: $125K min, $1.5M max.
+DSCR Ratio: 0 to <0.75 (No Ratio / very low DSCR).
+STR: Ineligible.
+Product Types: 30yr Fixed, 15yr Fixed. No Interest Only.
+LTV Matrix (740 FICO):
+  $1M: 75% purch/R&T, 65% cash-out
+  $1.5M: 70%, 60%
+720 FICO: $1M: 70%, 60%; $1.5M: 65%, 60%
+700 FICO: $1M: 65%, 60%; $1.5M: 65%, 60%
+Entity Vesting: Eligible (no entity layering).
+Housing History: 0x30x12.
+Credit Events: 3 years seasoning. Chapter 13 discharged/dismissed 2+ years. Multiple bankruptcies ineligible.
+Eligible Borrowers: US Citizens, Permanent Residents, Non-Permanent Residents (purchase/R&T only) with specific visa types (E-1, E-2, E-3, EB-5, G-1 to G-5, H1-B, L-1, NATO, O-1, R-1, TN NAFTA). Ineligible: ITINs, DACA, Foreign Nationals.
+Properties listed for sale in last 12 months: Ineligible for refinance.
+Cash-Out: Not for Non-Permanent Residents. Properties acquired within 12 months ineligible for cash-out.
+Rent Loss Insurance required.
+
+--- DSCR MULTI (5-8 UNITS) ---
+Occupancy: Investment Properties (Business Purpose).
+Min FICO: 720 for all borrowers.
+Loan Amounts: $250K min, $3M max ($400K+ no LTV reduction; <400K requires 5% LTV reduction).
+DSCR: Min 1.00. No STR permitted.
+LTV Matrix (720+ FICO, >=1.00 DSCR):
+  $1.5M: 75% purch, 75% R&T, 70% cash-out
+  $2M: 75%, 70%, 65%
+  $2.5M-3M: 70%, 70%, 65%
+Cash-Out: Max $1M.
+Entity Vesting: Eligible.
+Foreign Nationals: Eligible (min DSCR 1.00, must meet US credit requirements, 12mo PITIA reserves, reduced LTVs by loan size).
+Housing History: 0x30x24. Rent Free not permitted.
+Credit Events: 2 years seasoning.
+Reserves: <=1.5M=6mo; >1.5M-2M=9mo; >2M-3M=12mo. Cash-out ok.
+Property: Residential 5-8 Units only. Min 400 sqft per unit. Each unit must have full kitchen and bath. No STR.
+Rural Properties: Ineligible.
+Appraisals: FHLMC 71A or 71B (<$750K). Loans >$2M require second appraisal.
+
+--- FOREIGN NATIONAL ---
+Eligible Borrowers: Non-US citizen living and working in another country as legal resident. OFAC sanctioned countries ineligible. Power of Attorney ineligible.
+Occupancy: Second Home (1-unit only) and Investment Properties (1-4 units).
+Loan Amounts: $150K min, $3M max.
+Min FICO: 700 (or No Score with lower LTVs).
+Product Types: 30yr Fixed, 15yr Fixed, 30yr Fixed I/O.
+Max DTI: 50% (Full Doc or Asset Utilization).
+Credit Events: 4 years seasoning.
+Second Home LTV (700+ FICO):
+  $1.5M: 75% purch, 70% R&T, 65% cash-out
+  $2.5M: 70%, 70%, 65%
+  $3M: 65%, 65%, 60%
+No Score LTV:
+  $1.5M: 70%, 70%, 65%; $2.5M: 65%,65%,60%; $3M: 60%,60%,55%
+Investment LTV (700+ FICO):
+  $2M: 70%, 70%, 60%; $2.5M: 65%,65%,60%; $3M: 60%,60%,55%
+Investment DSCR LTV (700+ FICO, DSCR>=1.00):
+  $2M: 70%, 70%, 65%; $2.5M: 65%,65%,60%; $3M: 60%,60%,55%
+STR: Min DSCR 1.15, max 70% LTV, not NYC 5 boroughs.
+Reserves: 12mo PITIA standard; 6mo with 5% LTV reduction. Cash-out ok.
+Income: Wage earners need employer letter on letterhead + 2 years earnings verification. Self-employed 2 years min with CPA letter and accountant license copy. Asset Utilization (eligible as sole or combined): assets seasoned 3mo, need lesser of 1.5x loan balance or $1M in qualified assets net of down payment/closing/reserves, monthly income = assets/60mo. Foreign assets eligible.
+ACH Payment: Required from US Bank for all foreign national borrowers.
+Property: SFR, PUD, Townhome; 2-4 Units and Condos max 70% purch/R&T, 65% cash-out; Condotels max $1.5M; 5-8 Unit Multi see DSCR Multi program.
+Rural Properties: Ineligible. Max 2 acres.
+
+--- PRODUCT MATCHING GUIDE (NQM FUNDING) ---
+Self-employed borrower primary/2nd home: Flex Supreme (680+ FICO, up to $3M) or Flex Select (660+ FICO, up to $3.5M, more property types)
+Self-employed with recent credit events: Flex Select (2-4 year seasoning tiers available)
+ITIN borrower: Select ITIN (660+ FICO, up to $2.5M, primary/2nd/investment)
+Super high balance primary (>$3.5M): Super Jumbo (720+ FICO, 38% max DTI, primary only)
+Standalone 2nd lien: Second Lien Select (700+ FICO, $50K-$1M, piggyback or stand-alone)
+DSCR investor high quality: DSCR Supreme (720+ FICO, $2M max, no-ratio not available)
+DSCR investor standard: Investor DSCR (660+ FICO, $3M max, DSCR as low as 0.75, condotels ok)
+DSCR very low or no ratio: Investor DSCR No Ratio (700+ FICO, $1.5M max, DSCR 0 to <0.75)
+5-8 unit multifamily DSCR: DSCR Multi (720+ FICO, $3M max, foreign nationals eligible)
+Foreign national: Foreign National program (700+ FICO or no score, 2nd home or investment, asset utilization ok)
 `;
 
-const SYS_LO = `You are an expert Non-QM mortgage underwriter at East Coast Capital. Analyze the scenario using the knowledge base and provide a structured assessment for a loan originator.
+var SYS_LO = 'You are an expert Non-QM mortgage underwriter at East Coast Capital, specializing in NQM Funding products. Analyze the scenario using the knowledge base and provide a structured assessment for a loan originator.\n\nKNOWLEDGE BASE:\n' + KB + '\n\nRespond using EXACTLY these ## section headers:\n## PRODUCT FIT\n## RECOMMENDED LENDERS\n## REQUIRED DOCUMENTATION\n## RED FLAGS & DEAL KILLERS\n## DEAL NOTES\n\nBe direct, technical, specific. Cite NQM Funding program names, FICO floors, LTV limits, and seasoning requirements. Flag anything that could kill the deal. If no NQM program fits, say so clearly and explain why.';
 
-KNOWLEDGE BASE:
-` + KB + `
+var SYS_PARTNER = 'You are a helpful mortgage advisor assistant for East Coast Capital, managed by Jesse Quartararo (15-year Non-QM specialist). You help CPAs and financial advisors assess whether their clients might qualify for specialized mortgage products through NQM Funding.\n\nTONE RULES:\n- Warm, plain English, no jargon\n- NEVER say a deal is impossible or that a client cannot qualify\n- Strong fit: Express genuine optimism\n- Uncertain: Cautious optimism, worth a conversation with Jesse\n- Difficult: say this situation might be tricky based on what you have shared, but you may be missing key details, situations like this often have more options than they first appear, encourage them to reach out to Jesse directly\n\nKNOWLEDGE BASE:\n' + KB + '\n\nRespond using EXACTLY these ## section headers:\n## INITIAL IMPRESSION\n## WHAT YOUR CLIENT SHOULD GATHER\n## NEXT STEP\n\nKeep the Next Step section warm and specific, directing them to contact Jesse Quartararo at East Coast Capital.';
 
-Respond using EXACTLY these ## section headers:
-## PRODUCT FIT
-## RECOMMENDED LENDERS
-## REQUIRED DOCUMENTATION
-## RED FLAGS & DEAL KILLERS
-## DEAL NOTES
-
-Be direct, technical, specific. Cite guideline parameters (LTV limits, FICO floors, seasoning). Flag anything that could kill the deal.`;
-
-const SYS_PARTNER = `You are a helpful mortgage advisor assistant for East Coast Capital, managed by Jesse Quartararo (15-year Non-QM specialist). You help CPAs and financial advisors assess whether their clients might qualify for specialized mortgage products.
-
-TONE RULES:
-- Warm, plain English, no jargon
-- NEVER say a deal is impossible or that a client cannot qualify
-- Strong fit: Express genuine optimism
-- Uncertain: Cautious optimism, worth a conversation with Jesse
-- Difficult: say "This one might be tricky based on what you've shared, but I may be missing key details. Situations like this often have more options than they first appear. I'd encourage you to reach out to Jesse directly."
-
-KNOWLEDGE BASE:
-` + KB + `
-
-Respond using EXACTLY these ## section headers:
-## INITIAL IMPRESSION
-## WHAT YOUR CLIENT SHOULD GATHER
-## NEXT STEP
-
-Keep the Next Step section warm and specific, directing them to contact Jesse Quartararo at East Coast Capital.`;
-
-const LO_FIELDS = [
-  {name:'borrowerType', label:'Borrower type', type:'select', options:['','W-2 / Traditional','Self-Employed / Business Owner','Real Estate Investor (DSCR)','High Net Worth / Retired','Foreign National','Independent Contractor / 1099']},
-  {name:'incomeDoc', label:'Income documentation', type:'select', options:['','12-Mo Bank Statement (Personal)','24-Mo Bank Statement (Personal)','12-Mo Bank Statement (Business)','24-Mo Bank Statement (Business)','P&L Only (CPA Prepared)','1099 Income Only','Asset Depletion','Asset Dissipation','DSCR / No Personal Income','No Doc']},
+var LO_FIELDS = [
+  {name:'borrowerType', label:'Borrower type', type:'select', options:['','W-2 / Traditional','Self-Employed / Business Owner','Real Estate Investor (DSCR)','High Net Worth / Retired','Foreign National','ITIN Borrower','Independent Contractor / 1099']},
+  {name:'incomeDoc', label:'Income documentation', type:'select', options:['','12-Mo Bank Statement (Personal)','24-Mo Bank Statement (Personal)','12-Mo Bank Statement (Business)','24-Mo Bank Statement (Business)','P&L Only (CPA Prepared)','P&L Plus 2 Months Bank Statements','1099 Income Only','Asset Utilization','DSCR / No Personal Income','DSCR No Ratio (< 0.75)','WVOE','No Doc']},
   {name:'loanPurpose', label:'Loan purpose', type:'select', options:['','Purchase','Rate & Term Refinance','Cash-Out Refinance']},
-  {name:'propertyType', label:'Property type', type:'select', options:['','Single Family (SFR)','Condo (Warrantable)','Condo (Non-Warrantable)','2-4 Unit','5+ Unit Residential','Mixed Use']},
+  {name:'propertyType', label:'Property type', type:'select', options:['','Single Family (SFR)','Condo (Warrantable)','Condo (Non-Warrantable)','Condotel','2-4 Unit','5-8 Unit Residential','Co-Op','Manufactured Home']},
   {name:'occupancy', label:'Occupancy', type:'select', options:['','Primary Residence','Second Home','Investment Property']},
-  {name:'fico', label:'Estimated FICO', type:'number', placeholder:'e.g. 680'},
+  {name:'fico', label:'Estimated FICO', type:'number', placeholder:'e.g. 720'},
   {name:'ltv', label:'Estimated LTV (%)', type:'number', placeholder:'e.g. 75'},
   {name:'loanAmount', label:'Loan amount ($)', type:'number', placeholder:'e.g. 850000'},
+  {name:'dscr', label:'Estimated DSCR (investors)', type:'text', placeholder:'e.g. 1.05 or N/A', showIf: function(f){ return f.occupancy === 'Investment Property'; }},
   {name:'creditEvent', label:'Credit events', type:'select', options:['None','BK Chapter 7 (discharged)','BK Chapter 13 (discharged)','BK Chapter 13 (dismissed)','Foreclosure','Short Sale','Deed-in-Lieu','Multiple events']},
   {name:'creditEventMonths', label:'Months since event', type:'number', placeholder:'e.g. 36', showIf: function(f){ return f.creditEvent && f.creditEvent !== 'None'; }},
 ];
 
-const PARTNER_FIELDS = [
-  {name:'clientType', label:'What does your client do?', type:'select', full:true, options:['','Owns a business','Real estate investor','High net worth / retired','Employed with complex finances','Other']},
+var PARTNER_FIELDS = [
+  {name:'clientType', label:'What does your client do?', type:'select', full:true, options:['','Owns a business','Real estate investor','High net worth / retired','Employed with complex finances','Foreign national','Other']},
   {name:'loanPurpose', label:'What are they trying to do?', type:'select', options:['','Buy a property','Refinance a property they own']},
-  {name:'propertyType', label:'Property type', type:'select', options:['','Primary home','Second home / vacation property','Investment / rental property']},
+  {name:'propertyType', label:'Property type', type:'select', options:['','Primary home','Second home / vacation property','Investment / rental property','Multi-unit investment (5+ units)']},
   {name:'creditProfile', label:'How would you describe their credit?', type:'select', options:['','Excellent (740+)','Good (680-739)','Fair (620-679)','Needs some work (below 620)']},
   {name:'loanAmount', label:'Approximate loan amount', type:'text', placeholder:'e.g. $850,000'},
   {name:'creditEvent', label:'Any significant financial events?', type:'select', full:true, options:['No major issues','Bankruptcy in the past','Foreclosure or short sale in the past','Other credit issues']},
 ];
 
-const LO_COLORS = {
+var LO_COLORS = {
   'PRODUCT FIT':             {bg:'var(--info-bg)',    fg:'var(--info-fg)',    bar:'var(--info-bar)'},
   'RECOMMENDED LENDERS':     {bg:'var(--success-bg)', fg:'var(--success-fg)', bar:'var(--success-bar)'},
   'REQUIRED DOCUMENTATION':  {bg:'var(--warn-bg)',    fg:'var(--warn-fg)',    bar:'var(--warn-bar)'},
@@ -204,7 +370,7 @@ const LO_COLORS = {
   'DEAL NOTES':              {bg:'var(--gray-bg)',    fg:'var(--gray-fg)',    bar:'var(--gray-bar)'},
 };
 
-const PARTNER_COLORS = {
+var PARTNER_COLORS = {
   'INITIAL IMPRESSION':             {bg:'var(--success-bg)', fg:'var(--success-fg)', bar:'var(--success-bar)'},
   'WHAT YOUR CLIENT SHOULD GATHER': {bg:'var(--warn-bg)',    fg:'var(--warn-fg)',    bar:'var(--warn-bar)'},
   'NEXT STEP':                      {bg:'var(--info-bg)',    fg:'var(--info-fg)',    bar:'var(--info-bar)'},
@@ -248,14 +414,8 @@ function render() {
   var visFields = fields.filter(function(f){ return !f.showIf || f.showIf(form); });
 
   var keySection = (apiKey && !showKey)
-    ? '<div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem">'
-        + '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;color:var(--text2)">API key &bull;&bull;&bull;&bull;' + apiKey.slice(-4) + '</span>'
-        + '<button onclick="showKey=true;render()" style="font-size:12px;color:' + accent + ';background:none;border:none;cursor:pointer;padding:0">change</button>'
-        + '</div>'
-    : '<div style="display:flex;gap:8px;align-items:center;margin-bottom:1.25rem">'
-        + '<input type="password" id="keyInput" placeholder="Anthropic API key (sk-ant-...)" value="' + apiKey + '" style="max-width:340px;font-family:\'IBM Plex Mono\',monospace;font-size:12px" oninput="apiKey=this.value;try{localStorage.setItem(\'ecc_desk_key\',apiKey)}catch(e){}">'
-        + (apiKey ? '<button onclick="showKey=false;render()" style="font-size:12px;color:var(--text2);background:none;border:none;cursor:pointer;padding:0">done</button>' : '')
-        + '</div>';
+    ? '<div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem"><span style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;color:var(--text2)">API key &bull;&bull;&bull;&bull;' + apiKey.slice(-4) + '</span><button onclick="showKey=true;render()" style="font-size:12px;color:' + accent + ';background:none;border:none;cursor:pointer;padding:0">change</button></div>'
+    : '<div style="display:flex;gap:8px;align-items:center;margin-bottom:1.25rem"><input type="password" placeholder="Anthropic API key (sk-ant-...)" value="' + apiKey + '" style="max-width:340px;font-family:\'IBM Plex Mono\',monospace;font-size:12px" oninput="apiKey=this.value;try{localStorage.setItem(\'ecc_desk_key\',apiKey)}catch(e){}">' + (apiKey ? '<button onclick="showKey=false;render()" style="font-size:12px;color:var(--text2);background:none;border:none;cursor:pointer;padding:0">done</button>' : '') + '</div>';
 
   var formGrid = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:1rem">'
     + visFields.map(function(f) {
@@ -263,49 +423,32 @@ function render() {
         var full = f.full ? 'style="grid-column:1/-1"' : '';
         var label = '<label style="display:block;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">' + f.label + '</label>';
         if (f.type === 'select') {
-          return '<div ' + full + '>' + label + '<select onchange="form[\'' + f.name + '\']=this.value;render()">'
-            + f.options.map(function(o){ return '<option value="' + o + '"' + (o === val ? ' selected' : '') + '>' + (o || '&mdash; select &mdash;') + '</option>'; }).join('')
-            + '</select></div>';
+          return '<div ' + full + '>' + label + '<select onchange="form[\'' + f.name + '\']=this.value;render()">' + f.options.map(function(o){ return '<option value="' + o + '"' + (o === val ? ' selected' : '') + '>' + (o || '&mdash; select &mdash;') + '</option>'; }).join('') + '</select></div>';
         }
         return '<div ' + full + '>' + label + '<input type="' + f.type + '" placeholder="' + (f.placeholder || '') + '" value="' + val + '" oninput="form[\'' + f.name + '\']=this.value"></div>';
       }).join('')
     + '</div>';
 
   var notesLabel = isLO ? 'Additional notes' : 'Anything else we should know?';
-  var notesPlaceholder = isLO
-    ? 'Employment history, income trends, compensating factors, unusual circumstances...'
-    : 'Any context that might be helpful...';
+  var notesPlaceholder = isLO ? 'Employment history, income trends, compensating factors, geographic location, unusual circumstances...' : 'Any context that might be helpful...';
 
   var resultHtml = result
-    ? '<div style="margin-top:2rem">'
-        + '<div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Scenario analysis</div>'
-        + result.map(function(s) {
-            var colorMap = isLO ? LO_COLORS : PARTNER_COLORS;
-            var c = colorMap[s.title.toUpperCase()] || {bg:'var(--gray-bg)',fg:'var(--gray-fg)',bar:'var(--gray-bar)'};
-            return '<div style="background:var(--bg);border:0.5px solid var(--border);border-left:3px solid ' + c.bar + ';border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:12px">'
-              + '<div style="display:inline-flex;background:' + c.bg + ';color:' + c.fg + ';border-radius:var(--radius);padding:3px 10px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px">' + s.title + '</div>'
-              + '<div>' + mdToHtml(s.content) + '</div>'
-              + '</div>';
-          }).join('')
-        + '</div>'
+    ? '<div style="margin-top:2rem"><div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Scenario analysis</div>'
+      + result.map(function(s) {
+          var colorMap = isLO ? LO_COLORS : PARTNER_COLORS;
+          var c = colorMap[s.title.toUpperCase()] || {bg:'var(--gray-bg)',fg:'var(--gray-fg)',bar:'var(--gray-bar)'};
+          return '<div style="background:var(--bg);border:0.5px solid var(--border);border-left:3px solid ' + c.bar + ';border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:12px"><div style="display:inline-flex;background:' + c.bg + ';color:' + c.fg + ';border-radius:var(--radius);padding:3px 10px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px">' + s.title + '</div><div>' + mdToHtml(s.content) + '</div></div>';
+        }).join('')
+      + '</div>'
     : '';
 
   document.getElementById('app').innerHTML =
     '<div style="border-bottom:0.5px solid var(--border);padding-bottom:1.25rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">'
-      + '<div>'
-        + '<div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:500;color:var(--text)">Non-QM Scenario Desk</div>'
-        + '<div style="font-size:12px;color:var(--text2);margin-top:3px">East Coast Capital &middot; Jesse Quartararo, NMLS# 845007</div>'
-      + '</div>'
+      + '<div><div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:500;color:var(--text)">Non-QM Scenario Desk</div><div style="font-size:12px;color:var(--text2);margin-top:3px">East Coast Capital &middot; Jesse Quartararo, NMLS# 845007</div></div>'
       + '<div style="display:flex;background:var(--bg2);border-radius:var(--radius-lg);padding:3px;gap:2px">'
         + [['lo','Loan Originator'],['partner','Referral Partner']].map(function(pair) {
             var m = pair[0], lbl = pair[1];
-            return '<button onclick="mode=\'' + m + '\';form={};result=null;error=\'\';render()"'
-              + ' style="background:' + (mode === m ? 'var(--bg)' : 'transparent') + ';'
-              + 'border:' + (mode === m ? '0.5px solid var(--border2)' : 'none') + ';'
-              + 'border-radius:var(--radius);padding:7px 16px;'
-              + 'font-size:13px;font-weight:' + (mode === m ? 500 : 400) + ';'
-              + 'color:' + (mode === m ? 'var(--text)' : 'var(--text2)') + ';'
-              + 'cursor:pointer;transition:all 0.15s">' + lbl + '</button>';
+            return '<button onclick="mode=\'' + m + '\';form={};result=null;error=\'\';render()" style="background:' + (mode===m?'var(--bg)':'transparent') + ';border:' + (mode===m?'0.5px solid var(--border2)':'none') + ';border-radius:var(--radius);padding:7px 16px;font-size:13px;font-weight:' + (mode===m?500:400) + ';color:' + (mode===m?'var(--text)':'var(--text2)') + ';cursor:pointer;transition:all 0.15s">' + lbl + '</button>';
           }).join('')
       + '</div>'
     + '</div>'
@@ -313,14 +456,9 @@ function render() {
     + '<div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.25rem 1rem;margin-bottom:1rem">'
       + '<div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem">' + (isLO ? 'Scenario details' : 'Client overview') + '</div>'
       + formGrid
-      + '<div>'
-        + '<label style="display:block;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">' + notesLabel + '</label>'
-        + '<textarea rows="3" placeholder="' + notesPlaceholder + '" oninput="form.notes=this.value">' + (form.notes||'').replace(/</g,'&lt;') + '</textarea>'
-      + '</div>'
+      + '<div><label style="display:block;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">' + notesLabel + '</label><textarea rows="3" placeholder="' + notesPlaceholder + '" oninput="form.notes=this.value">' + (form.notes||'').replace(/</g,'&lt;') + '</textarea></div>'
     + '</div>'
-    + '<button onclick="runScenario()" ' + (loading ? 'disabled' : '') + ' style="background:' + (loading ? 'var(--text3)' : accent) + ';color:#fff;border:none;border-radius:var(--radius);padding:11px 30px;font-size:14px;font-weight:500;cursor:' + (loading ? 'not-allowed' : 'pointer') + ';transition:opacity 0.15s">'
-      + (loading ? 'Analyzing&hellip;' : 'Run Scenario')
-    + '</button>'
+    + '<button onclick="runScenario()" ' + (loading?'disabled':'') + ' style="background:' + (loading?'var(--text3)':accent) + ';color:#fff;border:none;border-radius:var(--radius);padding:11px 30px;font-size:14px;font-weight:500;cursor:' + (loading?'not-allowed':'pointer') + ';transition:opacity 0.15s">' + (loading?'Analyzing&hellip;':'Run Scenario') + '</button>'
     + (error ? '<div style="margin-top:1rem;padding:12px 16px;background:var(--danger-bg);border-radius:var(--radius);color:var(--danger-fg);font-size:13px">' + error + '</div>' : '')
     + resultHtml;
 }
@@ -343,6 +481,7 @@ async function runScenario() {
       + 'Estimated FICO: ' + (form.fico || 'Not specified') + '\n'
       + 'Estimated LTV: ' + (form.ltv ? form.ltv + '%' : 'Not specified') + '\n'
       + 'Loan amount: ' + (form.loanAmount ? '$' + Number(form.loanAmount).toLocaleString() : 'Not specified') + '\n'
+      + (form.dscr ? 'Estimated DSCR: ' + form.dscr + '\n' : '')
       + 'Credit events: ' + (form.creditEvent || 'None') + (form.creditEventMonths ? ', ' + form.creditEventMonths + ' months ago' : '') + '\n'
       + 'Additional notes: ' + (form.notes || 'None');
   } else {
@@ -366,7 +505,7 @@ async function runScenario() {
         'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1200,
         system: sys,
         messages: [{ role: 'user', content: msg }]

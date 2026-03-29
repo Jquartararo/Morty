@@ -469,17 +469,178 @@ Note: Specific LTV/FICO matrices are published on Verus rate sheets at verusmc.c
 The following reflects confirmed guidelines from the 3/9/26 Seller Guide.
 ================================================================
 
-PROGRAMS OVERVIEW:
-- Prime Ascent Plus: Standard/Alt Doc, owner-occupied and second home focus, entity vesting INELIGIBLE
-- Prime Ascent: Standard/Alt Doc, entity vesting eligible, AUS (DU Approve/Eligible or LPA Accept/Eligible) accepted
-- ITIN: Standard and Alt Doc for ITIN borrowers
-- DSCR Plus: Investment only, experienced investors only, no first-time investors, no STR income
-- DSCR 1-4: Investment 1-4 unit, first-time investors eligible with restrictions
+PROGRAMS OVERVIEW (Effective 03/09/2026):
+- Prime Ascent Plus: Standard/Alt Doc, all occupancies, entity vesting INELIGIBLE, max $2.5M, min FICO 680
+- Prime Ascent: Full alt doc suite including P&L Only, WVOE, 1099, Asset Utilization, entity vesting eligible, AUS accepted, max $4M, min FICO 620
+- ITIN: Standard/Alt Doc, primary and second home only, max $1.5M, min FICO 660
+- DSCR Plus (Investor Solutions): Investment only, experienced investors only, no STR, no first-time investors, max $2.5M, min FICO 680
+- DSCR (Investor Solutions): Investment only, first-time investors eligible with restrictions, STR eligible, max $3.5M, min FICO 640
 - DSCR 5-8 Unit / 2-8 Mixed Use: Investment, larger multifamily and mixed use
 - Foreign National DSCR: Investment only, foreign nationals
 - Cross Collateral DSCR: Multiple investment properties under one loan (blanket mortgage)
 - Closed End Second / HELOC: Second lien products
 - Max borrower exposure: $5M or 10 loans total with Verus
+
+--- PRIME ASCENT PLUS MATRIX (Standard Doc and Alt Doc) ---
+Ineligible: 2-4 Unit, Condotel, Rural. Entity vesting ineligible.
+Housing History: 0x30x12. Credit Events BK/FC/SS/DIL/PreFC/Mortgage Charge-Off: min 48 months seasoning.
+Forbearance/Modification/Deferral: must be >12 months ago. Max DTI: 45%.
+Reserves: 6 months PITIA; >$1.5M loan = 9 months. Alt Doc ineligible: P&L Only, WVOE, 1099, Asset Utilization.
+Non-Permanent Resident Alien: eligible. Max LTV 80%.
+Primary Residence LTV (Purchase / Rate-Term / Cash-Out):
+  720 FICO / $1M: 80/80/80
+  720 FICO / $2M: 80/75/75
+  720 FICO / $2.5M: 75/70/70
+  700 FICO / $1M: 80/75/75
+  700 FICO / $2M: 80/70/70
+  700 FICO / $2.5M: 70/65/65
+  680 FICO / $1M: 80/75/75
+  680 FICO / $2M: 75/70/70
+  680 FICO / $2.5M: 70/NA/NA
+Second Home and Investment LTV (Purchase / Rate-Term / Cash-Out):
+  720 FICO / $1M: 75/70/70
+  720 FICO / $2M: 75/70/70
+  700 FICO / $1M: 75/70/70
+  700 FICO / $2M: 75/70/70
+  680 FICO / $1M: 75/70/70
+  680 FICO / $2M: 75/70/70
+  (Second home ineligible at $2.5M for all FICO tiers)
+
+--- PRIME ASCENT MATRIX (Standard Doc and Alt Doc) ---
+Property: SFR, 2-4 Unit and Condo max 85% LTV, Condotel max 85%/$2.5M, Rural max 80% purchase/75% refi. Entity vesting eligible.
+Housing History tiers: 1x30x12 = matrix LTV; 0x60x12 = max 80% purch/75% refi/$1.5M; 0x90x12 = max 70% purch/NA refi/$1M.
+Credit Events BK/FC/SS/DIL/PreFC/MC: 36+ months = matrix LTV; 24+ months = max 80% purch/75% refi/$1.5M; 12+ months = max 70% purch/NA refi/$1M.
+Forbearance/Modification/Deferral within 12 months = treated as 0x90x12.
+State overlays CT/FL/IL/NJ/NY: max 85% purch/80% refi/$2M.
+Declining market: max 85% purch/80% refi/$2M.
+Max DTI: 50%. Primary up to 55% with: min $3,500 residual, max 80% LTV, standard doc 2yr, min 6mo reserves, no FTHB, min 660 FICO.
+Non-Permanent Resident Alien: max 80% LTV. Max loan $4M.
+Income options: Standard Doc, Bank Statement (12/24mo), 1099, P&L Only, P&L + 2mo bank statements, WVOE, Asset Utilization.
+P&L Only and P&L+2mo Bank Statements, WVOE, Asset Utilization: max 1x30x12 housing, min 36mo credit event seasoning.
+Asset Utilization: eligible assets / 84 months = qualifying income.
+Reserves: LTV <=80% = 3mo; 80.01-85% = 6mo; >85% = 12mo; >$1.5M = 9mo; >$2.5M = 12mo.
+Primary Residence LTV Standard/Bank Statement/1099 (Purchase / Rate-Term / Cash-Out):
+  720 FICO / $1M-$1.5M: 90/85/80
+  720 FICO / $2M: 85/80/80
+  720 FICO / $2.5M: 80/75/75
+  720 FICO / $3M: 75/70/70
+  720 FICO / $3.5M-$4M: 70/65/NA
+  700 FICO / $1M-$1.5M: 90/85/80
+  700 FICO / $2M: 85/75/70
+  700 FICO / $2.5M: 75/70/65
+  700 FICO / $3M: 75/70/65
+  700 FICO / $3.5M: 70/65/NA
+  680 FICO / $1M: 90/85/75
+  680 FICO / $1.5M: 85/80/75
+  680 FICO / $2M: 80/75/70
+  680 FICO / $2.5M: 75/70/65
+  680 FICO / $3M: 70/65/65
+  660 FICO / $1M: 80/80/75
+  660 FICO / $1.5M: 80/75/75
+  660 FICO / $2M: 75/70/65
+  660 FICO / $2.5M: 70/65/65
+  640 FICO / $1M: 80/75/70
+  640 FICO / $1.5M: 70/65/65
+  640 FICO / $2M: 65/NA/NA
+  620 FICO / $1M: 70/70/NA
+Primary Residence P&L/WVOE/Asset Utilization (Purchase / Rate-Term / Cash-Out):
+  720-700 FICO / $1M-$1.5M: 80/75/70; $2M: 80/75/70; $2.5M: 75/70/70; $3M: 70/NA/NA
+  680 FICO / $1M-$1.5M: 80/75/70; $2M: 75/70/65; $2.5M: 70/65/60
+  660 FICO / $1M-$2.5M: NA (ineligible for second home/investment; limited primary)
+Second Home/Investment LTV Standard/Bank Statement/1099:
+  720 FICO / $1M-$2M: 85/80/75
+  720 FICO / $2.5M: 80/75/75
+  720 FICO / $3M: 75/70/70
+  720 FICO / $3.5M: 70/65/NA
+  700 FICO / $1M-$2M: 85/80/75 (or 85/75/70 at $2M)
+  700 FICO / $2.5M: 75/70/65
+  700 FICO / $3M: 75/70/65
+  700 FICO / $3.5M: 70/65/NA
+  680 FICO / $1M-$1.5M: 85/80/75
+  680 FICO / $2M: 80/75/70
+  680 FICO / $2.5M: 75/70/65
+  680 FICO / $3M: 70/65/65
+  660 FICO / $1M: 80/80/75; $1.5M: 80/75/75; $2M: 75/70/65; $2.5M: 70/65/65
+  640 FICO / $1M: 80/75/70; $1.5M: 70/65/65; $2M: 65/NA/NA
+  620 FICO / $1M: 70/70/NA
+
+--- ITIN MATRIX (Standard Doc and Alt Doc) ---
+Occupancy: Primary and Second Home only. Investment ineligible. No entity vesting.
+Property: SFR; 2-4 Unit/Condo/Condotel max 75% purch/70% refi; Rural max 75% purch/70% refi.
+Housing History: 1x30x12. Credit Events BK/FC/SS/DIL: min 36 months.
+Forbearance/Modification/Deferral: must be >12 months ago.
+Max DTI: 50%. Reserves: LTV=80% = 6mo; LTV<80% = 3mo. 100% gift funds allowed.
+Loan Amounts: min $150K, max $1.5M. Cash-in-hand: max $300K if LTV>50%; max $500K if LTV<=50%.
+Alt Doc options: Bank Statement (12/24mo), 1099, WVOE (min 680 FICO).
+Primary and Second Home LTV (Purchase / Rate-Term / Cash-Out):
+  700 FICO / $1M: 80/80/75
+  700 FICO / $1.5M: 80/80/75
+  680 FICO / $1M: 80/80/70
+  680 FICO / $1.5M: 75/75/70
+  660 FICO / $1M: 75/75/70
+  660 FICO / $1.5M: 70/70/65
+
+--- DSCR PLUS MATRIX (Investor Solutions) ---
+Occupancy: Investment only. Business purpose. Experienced investors only. No first-time investors. No FTHB.
+STR: INELIGIBLE. No entity vesting conflicts — see guide. Non-arm's length ineligible.
+Property: SFR; 2-4 Unit and Condo max 75% purch/70% refi; Condotel and Rural INELIGIBLE.
+Housing History: 0x30x12. Credit Events BK/FC/SS/DIL: min 48 months. Forbearance/Mod/Deferral: must be >12 months ago.
+State overlays CT/FL/IL/NJ/NY: max 75% purch/70% refi/$2M. IL/NY: 2-4 unit not eligible.
+Ineligible locations: Baltimore City MD, Philadelphia County PA.
+Vacant refinance: max 70% LTV.
+Loan Amounts: min $100K, max $2.5M. <$150K: max 70% purch/65% refi, min DSCR 1.25.
+Cash-in-hand: max $500K if LTV>65%; max $1M if LTV<65%.
+I/O: max 75% purch/75% R&T/70% cash-out, qualifies on I/O payment.
+Reserves: 6mo; >$1.5M = 9mo. Gift funds after min 10% borrower contribution.
+LTV Matrix (>=1.00 DSCR, Purchase / Rate-Term / Cash-Out):
+  700 FICO / $1M: 80/75/75
+  700 FICO / $1.5M: 80/75/75
+  700 FICO / $2M: 75/70/70
+  700 FICO / $2.5M: 70/65/65
+  680 FICO / $1M: 75/75/70
+  680 FICO / $1.5M: 75/70/70
+  680 FICO / $2M: 70/65/65
+  680 FICO / $2.5M: 70/65/65
+
+--- DSCR MATRIX (Investor Solutions) ---
+Occupancy: Investment only. Business purpose. Non-arm's length ineligible.
+Property: SFR; 2-4 Unit and Condo max 75% purch/70% refi; Condotel max 75% purch/65% refi/$1.5M; Rural max 75% purch/70% refi.
+First Time Investor: eligible with restrictions — min 700 FICO, DSCR>1.00, 1-unit only, must own primary, no FTHB, min 36mo credit event seasoning.
+Housing History: 1x30x12 no reduction; 0x60x12 = max 70% purch/65% refi.
+Credit Events: >=36mo no reduction; >=24mo = max 75% purch/70% refi. Forbearance/Mod/Deferral: must be >12 months ago.
+STR: eligible. LTV = lesser of 75% purch/70% refi or matrix.
+Vacant Refinance (long-term): max 70% LTV.
+State overlays CT/FL/IL/NJ/NY: max 75% purch/70% refi/$2M. IL/NY: 2-4 unit not eligible.
+Ineligible locations: Baltimore City MD, Philadelphia County PA.
+Loan Amounts: min $100K, max $3.5M. <$150K: max 70% purch/65% refi, min DSCR 1.25.
+Cash-in-hand: max $500K if LTV>65%; max $1M if LTV<65%.
+I/O: min 680 FICO, max 75% purch/75% R&T/70% cash-out, qualifies on I/O payment.
+Reserves: 2mo; >$1.5M = 6mo; >$2.5M = 12mo. Gift funds after min 10% borrower contribution.
+LTV Matrix (>=1.00 DSCR, Purchase / Rate-Term / Cash-Out):
+  700 FICO / $1M: 80/75/75
+  700 FICO / $1.5M: 80/75/75
+  700 FICO / $2M: 75/70/70
+  700 FICO / $3M: 70/65/65
+  700 FICO / $3.5M: 70/65/NA
+  660 FICO / $1M: 75/75/70
+  660 FICO / $1.5M: 75/70/70
+  660 FICO / $2M: 70/65/65
+  660 FICO / $2.5M: 70/65/65
+  660 FICO / $3M: 65/NA/NA
+  640 FICO / $1M: 75/70/NA
+  640 FICO / $1.5M: 65/65/NA
+  640 FICO / $2M: 65/NA/NA
+  640 FICO / $3M: 60/NA/NA
+LTV Matrix (<1.00 DSCR, Purchase / Rate-Term / Cash-Out):
+  700 FICO / $1M: 75/70/70
+  700 FICO / $1.5M: 75/70/70
+  700 FICO / $2M: 70/65/65
+  700 FICO / $2.5M: 65/NA/NA
+  700 FICO / $3M: 60/NA/NA
+  680 FICO / $1M-$1.5M: 70/65/NA
+  680 FICO / $2M: 65/60/NA
+  680 FICO / $3M: 60/NA/NA
+  660 FICO / $1M: 65/NA/NA
 
 ELIGIBLE BORROWERS:
 US Citizens: No restrictions.
@@ -497,12 +658,10 @@ Tradelines (DSCR): Waived per borrower if that borrower has 3 scores. Otherwise 
 Housing History: 0x30x12 required on all financed properties. Credit report must show current as of 45 days.
 
 CREDIT EVENTS:
-Minimum 12 months seasoning across all programs (from discharge/dismissal/completion to Note date).
-Program matrices may require longer periods — see Verus rate sheets for program-specific minimums.
-Prime Ascent Plus / ITIN / DSCR Plus / DSCR 1-4 / DSCR 5-8 / Foreign National / Cross Collateral: Forbearances, modifications, or deferrals within 12 months of Note date are INELIGIBLE.
-Prime Ascent: Forbearances within 12 months treated as 0x90x12 (eligible with restrictions).
-BK, FC, SS, DIL, Mortgage Charge-Off: Minimum 12 months (program matrices specify exact requirements).
-Multiple events: More restrictive requirements apply per matrix.
+Prime Ascent Plus / DSCR Plus: BK/FC/SS/DIL minimum 48 months seasoning.
+Prime Ascent / ITIN / DSCR: BK/FC/SS/DIL minimum 36 months (full matrix LTV). 24 months with LTV restrictions.
+Prime Ascent Plus / ITIN / DSCR Plus: Forbearances/modifications/deferrals within 12 months = INELIGIBLE.
+Prime Ascent / DSCR: Forbearances within 12 months = treated as 0x90x12 (eligible with LTV/loan amount restrictions).
 First Time Investor (DSCR): Minimum 36 months seasoning from any credit event.
 
 INCOME DOCUMENTATION OPTIONS:
@@ -560,23 +719,192 @@ DSCR - INVESTOR SOLUTIONS (1-4 Unit):
 - First Time Investor restrictions: Min 700 FICO, DSCR >1.00, 1-unit only, must own primary residence, min 36mo seasoning from any credit event, FTHB not allowed.
 - Housing history: 0x30x12 on primary residence and subject property.
 
-DSCR - 5-8 UNIT / 2-8 MIXED USE:
-- Residential 5-8 units or mixed use (residential + commercial). Commercial max 49.99% of building area.
-- Max 2 acres. No STR. No borrower occupancy.
-- Mixed use: Commercial space limited to Retail/Office/Restaurant.
+DSCR - 5-8 UNIT / 2-8 MIXED USE (Investor Solutions):
+- Investment only. Experienced investor required (1yr managing commercial or NOO residential real estate in last 3 years). First-time investors and FTHBs NOT eligible.
+- Min loan: $400K, Max: $3M. Min DSCR >= 1.00.
+- Residential 5-8 units OR mixed use 2-8 units (commercial limited to Retail/Office/Restaurant). Commercial max 49.99% of building area and max 49.99% of total income.
+- Max 2 acres. No STR. No borrower occupancy. Vacant commercial space NOT allowed.
 - Property condition: No fair/poor ratings, no environmental issues, no structural deferred maintenance.
+- Vacant units: Max 1 vacant on 2-3 unit; 2 vacancies on 4+ units. Vacant units qualify at 75% of market rent.
+- Housing History: 0x30x12. Credit events BK/FC/SS/DIL/PreFC/MC >= 36 months.
+- Ineligible states: IL, NY. Ineligible locations: Baltimore City MD, Philadelphia County PA.
+- State overlays CT, FL, NJ: max 70% purchase, 65% refi, min 720 FICO.
+- Commercial units: 2-3 unit max 1 commercial; 4-5 unit max 2 commercial; 6-8 unit max 3 commercial.
+- Appraisal: Full interior inspection all units. Rent roll + income/expense statement required.
+- Income: Use lower of market rent or lease. Management fee deducted. 2-8 mixed use commercial income max 49.99% of total property income.
+- Prepayment: Not allowed IL, NJ vested to individuals. Fixed % min 3% or declining 5%/4%/3% structures.
+- Reserves: 6mo PITIA; >$1.5M = 9mo; >$2.5M = 12mo. Cash-out cannot satisfy reserve requirement.
+LTV Matrix 5-8 Residential (DSCR >= 1.00, Purchase / Rate-Term / Cash-Out):
+  720 FICO / $1.5M: 75/70/65
+  720 FICO / $2M: 70/65/65
+  720 FICO / $2.5M: 65/60/60
+  720 FICO / $3M: 60/55/NA
+  700 FICO / $1.5M: 75/70/65
+  700 FICO / $2M: 70/65/65
+LTV Matrix 2-8 Mixed Use (DSCR >= 1.00, Purchase / Rate-Term / Cash-Out):
+  720 FICO / $1.5M: 75/70/65
+  720 FICO / $2M: 70/65/65
+  (No 2-8 Mixed Use above $2M loan amount)
+  700 FICO / $1.5M: 75/70/65
+  700 FICO / $2M: 70/65/65
+Product types: 15yr Fixed, 30yr Fixed, 5/6 ARM, 7/6 ARM, 10/6 ARM (30-year term). Interest Only eligible on 30-year term.
+Eligible borrowers: US Citizen, Permanent Resident Alien, Non-Permanent Resident Alien.
 
 CROSS COLLATERAL DSCR:
-- Single loan on 2+ investment properties. Loan DSCR min 1.00 (total). Property DSCR min 0.75 (each property).
-- Experienced investors only (1yr managing investment real estate in last 3 years). No FTHB.
-- Partial release: 120% of allocated balance required.
-- Cannot be originated or assigned to MERS. Business purpose documents required.
+- Single blanket loan covering 2-25 investment properties. Min loan $200K, Max $4M.
+- Loan DSCR min 1.00 (total). Property DSCR min 0.75 (each property). Property level allocated balance max $1M.
+- Experienced investors only (1yr in last 3 years). No FTHB. NOT eligible: 5-8 unit or 2-8 mixed use.
+- Property types: SFR. 2-4 unit/condo: max 75% purch/70% refi overlay. Condotel: max 75% purch/65% refi/$1.5M. Rural: max 75% purch/70% refi.
+- Housing history: 1x30x12 or 2x30x24. Credit events >= 36 months.
+- State overlays CT/FL/IL/NJ/NY: max 75% purchase/70% refi (if ANY portfolio property in these states). IL/NY: 2-4 unit not eligible.
+- Ineligible: Baltimore City MD, Philadelphia County PA.
+- Declining market overlay: max 75% purchase/70% refi (if ANY portfolio property in declining market).
+- Partial release: 120% of allocated balance. Escrows REQUIRED, not waivable.
+- I/O: Min 680 FICO, max 75%/75%/70%.
+- Reserves: 2mo per property; >$1.5M = 6mo; >$2.5M = 12mo. Cash-out MAY satisfy.
+- Cash-in-hand: max $1M if LTV >= 65%; max $2M if LTV < 65%.
+- Prepayment: AK/KS/MI/MN/NM/OH/RI not allowed; IL/NJ not allowed vested to individuals.
+LTV Matrix DSCR > 1.20 (Purchase / Rate-Term / Cash-Out):
+  700 FICO / $1M-$1.5M: 80/75/75
+  700 FICO / $2M: 75/75/70
+  700 FICO / $3M: 70/65/65
+  700 FICO / $3.5M: 70/65/NA
+  700 FICO / $4M: 65/60/NA
+  680 FICO / $1M-$1.5M: 75/75/70
+  680 FICO / $2M: 70/70/65
+  680 FICO / $3M-$3.5M: 65/NA/NA
+  660 FICO / $1M-$1.5M: 75/75/70
+  660 FICO / $2M-$2.5M: 70/65/65
+  660 FICO / $3M: 65/NA/NA
+LTV Matrix DSCR 1.00-1.20 (Purchase / Rate-Term / Cash-Out):
+  700 FICO / $1M-$1.5M: 75/70/70
+  700 FICO / $2M: 70/70/65
+  700 FICO / $2.5M: 65/65/60
+  700 FICO / $3M-$3.5M: 60/NA/NA
+  680 FICO / $1M-$1.5M: 70/70/65
+  680 FICO / $2M: 65/60/60
+  680 FICO / $3M-$3.5M: 60/NA/NA
+  660 FICO / $1M: 65/65/65
+  660 FICO / $1.5M: 65/65/60
+  660 FICO / $2M: 60/60/55
+  660 FICO / $2.5M: 60/55/NA
+  660 FICO / $3M: 55/NA/NA
 
 FOREIGN NATIONAL DSCR:
-- Investment property only. Primary residence outside US required.
-- OFAC sanctioned countries ineligible.
-- Florida purchases: special affidavit required.
-- See Verus matrix for LTV/FICO specifics.
+- Investment property only. Primary residence outside US required. OFAC sanctioned countries ineligible.
+- Eligible borrowers: Foreign Nationals only. Min loan $150K, Max $2.5M.
+- Florida purchases: Affidavit required (FL Land Title Association form — Conveyances to Foreign Entities).
+- Housing history: 0x30x12 if documented. Credit events >= 36 months. First-time investors: ALLOWED.
+- IL/NY: 2-4 unit not eligible. Ineligible: Baltimore City MD, Philadelphia County PA.
+- State overlays CT/FL/IL/NJ/NY: max 70% refi; max loan $2M all transactions.
+- Declining market: max 70% refi; max loan $2M all transactions.
+- Cash-in-hand: max $300K if LTV > 50%; max $500K if LTV <= 50%.
+- STR: refinance only. LTV = lesser of 70% or matrix. 20% expense factor. No Condotel.
+- Long-term vacant refinance: max 70% LTV. Reserves: 6mo PITIA; cash-out may satisfy.
+- Appraisal: FNMA 1004/1025/1073 interior/exterior. 2nd appraisal if loan > $2M.
+- Products: 15/30/40yr Fixed; 5/6, 7/6, 10/6 ARM 30/40yr. ARM 40yr must use I/O. I/O eligible.
+LTV Matrix DSCR >= 1.00 (Purchase / Rate-Term / Cash-Out):
+  680 FICO / $1M: 75/75/70
+  680 FICO / $1.5M: 75/75/65
+  680 FICO / $2M: 70/70/60
+  680 FICO / $2.5M: 65/NA/NA
+  No Score / $1M: 75/75/70
+  No Score / $1.5M: 75/75/65
+  No Score / $2M: 70/70/60
+  No Score / $2.5M: 65/NA/NA
+LTV Matrix DSCR < 1.00 (Purchase / Rate-Term / Cash-Out):
+  680 FICO / $1M: 70/70/65
+  680 FICO / $1.5M: 65/65/65
+  680 FICO / $2M: 60/60/60
+  No Score / $1M: 70/70/65
+  No Score / $1.5M: 65/65/65
+  No Score / $2M: 60/60/60
+Property: SFR, 2-4 Unit, Condo, Condotel max 70%/70%/65%. Rural max 70%/70%/65%. Max 5 acres.
+
+CLOSED END SECOND (CES):
+- Second lien product. Min $50K, Max $750K. All occupancies (primary, second home, investment).
+- Ineligible states: TX. Ineligible: Rural, Condotel.
+- Ineligible locations: investor occupancy Baltimore City MD, Philadelphia County PA.
+- Housing history: 0x30x12. Credit events BK/FC/SS/DIL/PreFC/MC/NOD >= 48 months.
+- Forbearance/Modification/Deferral: must be > 12 months ago. FTHB: NOT allowed.
+- State overlays CT/FL/IL/NJ/NY: SFR/Condo max 80% CLTV min 720 FICO; 2-4 Unit max 75% CLTV min 720 FICO.
+- Declining market: max 80% CLTV.
+- Loan purpose: Stand-alone cash-out (min 6 months ownership) OR simultaneous purchase (first lien must be agency-eligible).
+- Combined loan balance > $2M: max 80% CLTV; > $3M: max 75% CLTV; max total combined $4M.
+- I/O: Primary only, max 80% CLTV. 20yr term = 3yr I/O + 17yr amortization; 30yr = 3yr I/O + 27yr amortization.
+- DTI: max 50% if CLTV <= 80%; max 45% if CLTV > 80%.
+- Reserves: simultaneous purchase = follow first lien requirements; stand-alone = none required.
+- Non-Permanent Resident Alien: max 80% CLTV.
+- First lien ineligible if: in forbearance/modification within 12 months, HELOC, reverse mortgage, negative amortization, cross-collateralized.
+- Property: SFR, 2-4 Unit max 75% CLTV, Condo max 80% CLTV.
+CLTV Matrix Standard Doc (Loan Amount / FICO / Primary / Second Home / Investment):
+  $350K / 740: 90/80/75
+  $350K / 700: 85/80/65
+  $350K / 680: 75/75/NA
+  $500K / 740: 85/75/75
+  $500K / 700: 85/75/65
+  $500K / 680: 75/70/NA
+  $750K / 740: 80/75/NA
+  $750K / 700: 80/70/NA
+  $750K / 680: 75/65/NA
+CLTV Matrix Bank Statement / 1099 (Loan Amount / FICO / Primary / Second Home / Investment):
+  $350K / 740: 85/75/70
+  $350K / 700: 80/70/60
+  $350K / 680: 75/65/NA
+  $500K / 740: 80/70/65
+  $500K / 700: 75/65/60
+  $500K / 680: 70/60/NA
+  $750K / 740: 75/65/NA
+  $750K / 700: 70/60/NA
+  $750K / 680: 65/55/NA
+CLTV Matrix WVOE / P&L with 2 Mo Bank Statements (Loan Amount / FICO / Primary / Second Home / Investment):
+  $350K / 740: 80/70/70
+  $350K / 700: 75/65/60
+  $350K / 680: 70/60/NA
+  $500K / 740: 75/65/65
+  $500K / 700: 70/60/60
+  $500K / 680: 65/55/NA
+  $750K / 740: 70/60/NA
+  $750K / 700: 65/55/NA
+  $750K / 680: 60/50/NA
+Income options: Standard Doc (full tax returns or W-2/paystubs), Personal Bank Statement (12/24mo), Business Bank Statement (12/24mo, 50% expense ratio or CPA letter), P&L + 2mo Bank Statements (max 80% CLTV), WVOE (max 80% CLTV), 1099.
+AUS accepted for simultaneous purchase only (DU Approve/Eligible or LPA Accept/Eligible).
+
+HELOC (Home Equity Line of Credit):
+- Min $50K, Max $500K. All occupancies. Stand-alone cash-out only (min 12 months ownership on title).
+- Variable rate: Prime + margin. Floor rate 4.0%, max 18%. Draw periods: 2, 3, or 5 years.
+- Initial advance: minimum 50% of line. Minimum advance $1,000. No advances for 90 days after closing.
+- Ineligible states: TX. Ineligible: Rural, Non-Warrantable Condo, Condotel. Entity vesting INELIGIBLE.
+- Ineligible locations: investor occupancy Baltimore City MD, Philadelphia County PA.
+- Housing history: 0x30x12. Credit events BK/FC/SS/DIL/PreFC/MC/NOD >= 84 months.
+- Forbearance/Modification/Deferral: must be > 12 months ago.
+- State overlays CT/FL/IL/NJ/NY: max 80% HCLTV, min 720 FICO. TN: max 15yr total term.
+- Declining market: max 80% HCLTV.
+- Combined loan balance (HELOC + first lien): max $2M.
+- DTI: max 50% if HCLTV <= 80%; max 45% if HCLTV > 80%.
+- Assets and reserves: not applicable. No escrows on second lien programs.
+- Qualifying payment: amortizing P&I on max line amount, full repayment term, current rate.
+- Eligible borrowers: US Citizen, Permanent Resident Alien only.
+- Property: SFR. 2-4 Unit max 80% HCLTV. FNMA Warrantable Condo max 80% HCLTV.
+- First lien ineligible if: in forbearance/modification within 12 months, HELOC, reverse mortgage, negative amortization, cross-collateralized.
+HCLTV Matrix Standard Doc (Loan Amount / FICO / Primary / Second Home / Investment):
+  $250K / 740: 90/75/70
+  $250K / 700: 85/75/65
+  $250K / 680: 75/75/NA
+  $350K / 740: 85/75/65
+  $350K / 700: 85/75/65
+  $350K / 680: 75/70/NA
+  $500K / 740: 75/75/NA
+  $500K / 700: 75/70/NA
+  $500K / 680: 75/65/NA
+HCLTV Matrix Bank Statement (Loan Amount / FICO / Primary / Second Home / Investment):
+  $250K / 740: 80/75/70
+  $250K / 700: 75/70/65
+  $350K / 740: 75/75/65
+  $350K / 700: 75/70/65
+  $500K / 740: 75/70/NA
+  $500K / 700: 70/65/NA
+Income options: Standard Doc (W-2/paystubs/tax returns), Personal Bank Statement (12/24mo), Business Bank Statement (12/24mo, 50% expense ratio or CPA letter).
 
 DTI AND RESIDUAL INCOME:
 - Max DTI: See Verus matrices by program.
@@ -608,12 +936,15 @@ KEY VERUS PRODUCT MATCHING NOTES:
 - Self-employed with tax write-offs reducing income: Prime Ascent or Prime Ascent Plus (bank statement or P&L)
 - Self-employed less than 2 years: challenging; bank statement possible with 1yr min and same-industry 2yr history
 - ITIN borrower: ITIN program (Standard or Alt Doc)
-- Foreign national investor: Foreign National DSCR only
-- Investment 1-4 unit: DSCR 1-4 (first-time investors ok with restrictions) or DSCR Plus (experienced investors only)
-- Investment 5-8 unit / mixed use: DSCR 5-8 Unit/2-8 Mixed Use
-- Multiple investment properties: Cross Collateral DSCR (experienced investors only)
+- Foreign national investor: Foreign National DSCR only (investment, experienced OR first-time investor ok)
+- Investment 1-4 unit: DSCR 1-4 (first-time investors ok with restrictions) or DSCR Plus (experienced investors only, no STR)
+- Investment 5-8 unit or mixed use: DSCR 5-8 Unit/2-8 Mixed Use (experienced investors only, IL/NY ineligible)
+- Multiple investment properties blanket loan: Cross Collateral DSCR (experienced investors only, min 2 properties, max 25)
 - High net worth / asset-rich, low income: Asset Utilization under Prime Ascent or Prime Ascent Plus
-- Recent credit event: Prime Ascent (most flexible); Prime Ascent Plus / DSCR programs stricter
+- Recent credit event: Prime Ascent most flexible (36mo seasoning); Prime Ascent Plus / DSCR Plus need 48mo; CES needs 48mo
+- Stand-alone second lien cash-out: Closed End Second (min 6mo ownership, max $750K, TX ineligible)
+- HELOC: Verus HELOC (min 12mo ownership, max $500K, TX ineligible, entity vesting ineligible, variable rate)
+- New York or Illinois investor: INELIGIBLE for Verus DSCR 5-8 Unit and Cross Collateral DSCR 2-4 unit
 
 --- PRODUCT MATCHING GUIDE (NQM FUNDING) ---
 Self-employed borrower primary/2nd home: Flex Supreme (680+ FICO, up to $3M) or Flex Select (660+ FICO, up to $3.5M, more property types)
